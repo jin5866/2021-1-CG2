@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Collider">
+      <UniqueIdentifier>{4d65b385-76cc-45c0-b9ae-150db2e3c34e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Renderer">
+      <UniqueIdentifier>{7cc33e6a-5e4d-4240-83c3-d45497ff8ce9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Collider">
+      <UniqueIdentifier>{8e1d5b86-ea56-4299-abd1-3d594af4f753}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Renderer">
+      <UniqueIdentifier>{8be510f6-2343-4bee-89eb-45cbe3f6e76a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Object">
+      <UniqueIdentifier>{abadd5d5-f190-4265-a3fd-06147ab558ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object">
+      <UniqueIdentifier>{1f52a558-e173-4653-ae51-955f78a945e1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyStruct.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>Source Files\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Source Files\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeRenderer.cpp">
+      <Filter>Source Files\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="MyCube.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stb_image.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyStruct.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>Header Files\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Header Files\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeRenderer.h">
+      <Filter>Header Files\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="MyCube.h">
+      <Filter>Header Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
