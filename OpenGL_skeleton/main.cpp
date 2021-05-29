@@ -1,9 +1,10 @@
 ﻿#pragma once
+#ifndef STB_IMAGE_IMPLEMENTATION
+#define STB_IMAGE_IMPLEMENTATION
+#endif // !STB_IMAGE_IMPLEMENTATION
 #include <stdio.h>
 #include<algorithm>
 #include <glut.h>
-#define STB_IMAGE_IMPLEMENTATION
-#include <stb_image.h>
 #include<vector>
 #include<iostream>
 #include<memory>
@@ -23,29 +24,29 @@ void draw_my_Torus(double r, double c, int rSeg, int cSeg);
 vector<unique_ptr<MyObject>> objs{};
 
 //The Function for Load Texture File
-GLuint LoadMeshFromFile(const char* texFile)
-{
-	GLuint texture;
-	glGenTextures(1, &texture);
-	FILE* fp = NULL;
-	if (fopen_s(&fp, texFile, "rb")) {
-		printf("ERROR : No %s. \n fail to bind %d\n", texFile, texture);
-		return false;
-	}
-	int width, height, channel;
-	unsigned char* image = stbi_load_from_file(fp, &width, &height, &channel, 4);
-	fclose(fp);
-
-	//bind
-	glBindTexture(GL_TEXTURE_2D, texture);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-	stbi_image_free(image);
-
-	return texture;
-}
+//GLuint LoadMeshFromFile(const char* texFile)
+//{
+//	GLuint texture;
+//	glGenTextures(1, &texture);
+//	FILE* fp = NULL;
+//	if (fopen_s(&fp, texFile, "rb")) {
+//		printf("ERROR : No %s. \n fail to bind %d\n", texFile, texture);
+//		return false;
+//	}
+//	int width, height, channel;
+//	unsigned char* image = stbi_load_from_file(fp, &width, &height, &channel, 4);
+//	fclose(fp);
+//
+//	//bind
+//	glBindTexture(GL_TEXTURE_2D, texture);
+//	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+//	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+//	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+//
+//	stbi_image_free(image);
+//
+//	return texture;
+//}
 
 void Initialize(void)
 {
