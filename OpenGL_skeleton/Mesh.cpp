@@ -9,9 +9,9 @@ void Mesh::setFaceNormal()
 	for (auto& face : faces) {
 		std::vector<GLfloat> result;
 		if (face.size() >= 3) {
-			std::vector<GLfloat>& v0 = v[face[0]];
-			std::vector<GLfloat>& v1 = v[face[1]];
-			std::vector<GLfloat>& v2 = v[face[2]];
+			std::vector<GLfloat>& v0 = v[face[0][0]];
+			std::vector<GLfloat>& v1 = v[face[1][0]];
+			std::vector<GLfloat>& v2 = v[face[2][0]];
 
 			std::vector<GLfloat> s0 = v1 - v0;
 			std::vector<GLfloat> s1 = v2 - v0;

@@ -30,7 +30,7 @@ void MeshRenderer::Draw()
 			glNormal3fv(&n[i][0]);
 		}
 		for (auto& vofface : face) {
-			glVertex3fv(&v[vofface][0]);
+			glVertex3fv(&v[vofface[0]][0]);
 		}
 		glEnd();
 	}
