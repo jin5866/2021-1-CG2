@@ -1,7 +1,7 @@
 #pragma once
 #include "Renderer.h"
-#include<glut.h>
 #include"Mesh.h"
+#include<glut.h>
 class MeshRenderer :
     public Renderer
 {

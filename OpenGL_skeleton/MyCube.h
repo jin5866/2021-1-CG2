@@ -1,6 +1,6 @@
 #pragma once
 #include "MyObject.h"
-#include "MeshRenderer.h"
+#include "Renderers.h"
 #include<memory>
 class MyCube :
     public MyObject

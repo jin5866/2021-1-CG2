@@ -1,4 +1,5 @@
 #include "CubeRenderer.h"
+#include <glut.h>
 void CubeRenderer::Draw()
 {
 	glutSolidCube(size);
