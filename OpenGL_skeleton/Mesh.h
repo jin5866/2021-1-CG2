@@ -25,7 +25,7 @@ public:
 	std::vector<std::vector<std::vector<GLint>>>& getFaces() { return faces; }
 
 
-	Mesh(const char* texFile);
+	//Mesh(const char* texFile);
 	Mesh() = default;
 	Mesh(const Mesh&) = default;
 	Mesh(Mesh&&) = default;
@@ -39,6 +39,6 @@ private:
 	std::vector<std::vector<GLfloat>> vt; //vertex texture
 	std::vector<std::vector<std::vector<GLint>>> faces; // v vt vn
 
-	GLuint texture;
+	//GLuint texture;
 };
 

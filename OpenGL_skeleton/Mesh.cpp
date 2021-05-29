@@ -26,6 +26,6 @@ void Mesh::setFaceNormal()
 	return;
 }
 
-Mesh::Mesh(const char* texFile)
-{
-}
+//Mesh::Mesh(const char* texFile)
+//{
+//}
