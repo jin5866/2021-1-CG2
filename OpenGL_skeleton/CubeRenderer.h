@@ -1,5 +1,6 @@
 #pragma once
 #include "Renderer.h"
+#include <glut.h>
 class CubeRenderer :
     public Renderer
 {

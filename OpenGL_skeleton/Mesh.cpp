@@ -3,7 +3,7 @@
 
 void Mesh::setFaceNormal()
 {
-	if (v.size() == 0) return;
+	/*if (v.size() == 0) return;
 
 	n.clear();
 	for (auto& face : faces) {
@@ -13,9 +13,15 @@ void Mesh::setFaceNormal()
 			std::vector<GLfloat>& v1 = v[face[1]];
 			std::vector<GLfloat>& v2 = v[face[2]];
 
-
+			std::vector<GLfloat> s0 = v1 - v0;
+			std::vector<GLfloat> s1 = v2 - v0;
+			std::vector<GLfloat> cs = cross(s0, s1);
+			result = normalize(cs);
+			
 		}
-
+		n.push_back(result);
 		
 	}
+
+	return;*/
 }

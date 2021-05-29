@@ -35,9 +35,9 @@ MyCube::MyCube(float size)
 		{2,6,5,1}
 	};
 	amesh->setFace(faces);
-	amesh->setFaceNormal(n);
+	
 	amesh->setVertex(v);
-
+	amesh->setFaceNormal();
 	mesh.reset(amesh);
 
 	renderer.reset(new MeshRenderer(mesh.get()));
