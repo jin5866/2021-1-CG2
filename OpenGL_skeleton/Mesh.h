@@ -1,6 +1,7 @@
 #pragma once
 #include<vector>
-#include<glut.h>
+#include "MyHeader.h"
+
 #include"MyMath.h"
 class Mesh
 {

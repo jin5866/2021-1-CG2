@@ -1,3 +1,4 @@
+#pragma once
 #include "MyCube.h"
 
 MyCube::MyCube(float size)

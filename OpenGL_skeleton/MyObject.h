@@ -5,6 +5,8 @@
 #include"Mesh.h"
 #include<memory>
 #include"MeshRenderer.h"
+#include<string>
+#include"TextureManager.h"
 class MyObject
 {
 	
@@ -23,6 +25,8 @@ public:
 	GLuint getTexture() {
 		return texture;
 	}
+
+	virtual void setTexture(std::string texFile);
 
 	virtual void Draw();
 

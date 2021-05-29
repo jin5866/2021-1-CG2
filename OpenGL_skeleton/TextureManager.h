@@ -1,12 +1,10 @@
 #pragma once
 #include<memory>
-#ifndef STB_IMAGE_IMPLEMENTATION
-#define STB_IMAGE_IMPLEMENTATION
-#endif // !STB_IMAGE_IMPLEMENTATION
-#include <stb_image.h>
+#include "MyHeader.h"
+
+
 #include<map>
 #include<string>
-#include <glut.h>
 
 
 

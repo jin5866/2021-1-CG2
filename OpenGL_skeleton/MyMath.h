@@ -1,6 +1,7 @@
 #pragma once
 #include<vector>
-#include<glut.h>
+#include "MyHeader.h"
+
 
 std::vector<float> cross(std::vector<float>& a, std::vector<float>& b);
 std::vector<float> operator- (std::vector<float>& a, std::vector<float>& b);
