@@ -15,6 +15,7 @@ TextureManager* TextureManager::getInstance()
 
 GLuint TextureManager::LoadMeshFromFile(const std::string& texFile)
 {
+	printf("%s\n", texFile.c_str());
 	auto tex = textures.find(texFile);
 	if (tex != textures.end()) {
 		return tex->second;
@@ -32,7 +33,7 @@ GLuint TextureManager::LoadMeshFromFile(const std::string& texFile)
 	fclose(fp);
 
 	//bind
-	//glBindTexture(GL_TEXTURE_2D, texture);
+	glBindTexture(GL_TEXTURE_2D, texture);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);

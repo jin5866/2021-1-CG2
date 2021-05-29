@@ -63,7 +63,7 @@ void Initialize(void)
 	// GLint texture1 = LoadMeshFromFile("texture.png");
 	//texture1 = LoadMeshFromFile("Contents/2.png");
 	//texture2 = LoadMeshFromFile("Contents/3.png");
-	objs.push_back(make_unique<MyCube>(1.0f));
+	objs.push_back(make_unique<MyCube>(10.0f));
 
 
 }

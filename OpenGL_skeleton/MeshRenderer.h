@@ -2,14 +2,15 @@
 #include "Renderer.h"
 #include"Mesh.h"
 #include<glut.h>
+#include "MyObject.h"
 class MeshRenderer :
     public Renderer
 {
 public:
 
 	virtual void Draw();
-
-	MeshRenderer(Mesh* mesh) : mesh(mesh) {}
+	MeshRenderer(MyObject* object) : object(object) {}
+	//MeshRenderer(Mesh* mesh) : mesh(mesh) {}
 	MeshRenderer() = default;
 	MeshRenderer(const MeshRenderer&) = default;
 	MeshRenderer(MeshRenderer&&) = default;
@@ -17,6 +18,7 @@ public:
 	MeshRenderer& operator=(MeshRenderer&&) = default;
 
 private:
-	Mesh* mesh;
+	//Mesh* mesh;
+	MyObject* object;
 };
 

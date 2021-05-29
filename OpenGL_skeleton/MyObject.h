@@ -4,7 +4,7 @@
 #include"Renderer.h"
 #include"Mesh.h"
 #include<memory>
-#include"MeshRenderer.h"
+#include<string>
 
 class MyObject
 {
@@ -25,7 +25,7 @@ public:
 		return texture;
 	}
 
-	void setTexture();
+	virtual void setTexture(std::string);
 
 	virtual void Draw();
 
@@ -39,7 +39,7 @@ protected:
 	std::unique_ptr<Collider> collider;
 	std::unique_ptr<Renderer> renderer;
 	std::unique_ptr<Mesh> mesh;
-	GLuint texture;
+	GLuint texture = 0;
 private:
 
 };

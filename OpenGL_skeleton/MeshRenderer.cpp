@@ -2,6 +2,7 @@
 
 void MeshRenderer::Draw()
 {
+	Mesh* mesh = object->getMesh();
 	if (!mesh) return;
 
 	auto& faces = mesh->getFaces();
@@ -12,9 +13,11 @@ void MeshRenderer::Draw()
 	bool isvt = vt.size() > 0;
 	bool isvn = vn.size() > 0;
 
+	glBindTexture(GL_TEXTURE_2D, object->getTexture());
+	glEnable(GL_TEXTURE_2D);
+
 	for (int i = 0; i < faces.size(); i++) {
 		auto& face = faces[i];
-
 		
 
 		switch (face.size())
