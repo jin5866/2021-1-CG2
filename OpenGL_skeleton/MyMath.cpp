@@ -1,4 +1,3 @@
-#pragma once
 #include "MyMath.h"
 
 std::vector<float> cross(std::vector<float>& a, std::vector<float>& b) {

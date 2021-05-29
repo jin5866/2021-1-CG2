@@ -1,6 +1,5 @@
 #pragma once
 #include "Renderer.h"
-#include "MyHeader.h"
 class CubeRenderer :
     public Renderer
 {

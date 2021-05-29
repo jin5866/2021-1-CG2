@@ -1,7 +1,7 @@
 ﻿#pragma once
+#ifndef STB_IMAGE_IMPLEMENTATION
 #define STB_IMAGE_IMPLEMENTATION
-#include "MyHeader.h"
-
+#endif // !STB_IMAGE_IMPLEMENTATION
 #include <stdio.h>
 #include<algorithm>
 #include<vector>
@@ -9,7 +9,7 @@
 #include<memory>
 #include"Objects.h"
 //#include "TextureManager.h"
-//#include <glut.h>
+#include <glut.h>
 using namespace std;
 
 int						m_Mouse_Coord[2];	// previous mouse coordinates

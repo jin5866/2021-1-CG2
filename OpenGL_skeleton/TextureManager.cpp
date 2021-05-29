@@ -1,7 +1,5 @@
-#pragma once
 #include "TextureManager.h"
-#define STB_IMAGE_IMPLEMENTATION
-#include <stb_image.h>
+
 TextureManager* TextureManager::getInstance()
 {
 	if (!instance) {

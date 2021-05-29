@@ -1,4 +1,3 @@
-#pragma once
 #include "MeshRenderer.h"
 
 void MeshRenderer::Draw()
