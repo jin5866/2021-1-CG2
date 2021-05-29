@@ -4,6 +4,7 @@
 #include"Renderer.h"
 #include"Mesh.h"
 #include<memory>
+#include"MeshRenderer.h"
 class MyObject
 {
 	
@@ -19,6 +20,9 @@ public:
 	Mesh* getMesh() {
 		return mesh.get();
 	}
+	GLuint getTexture() {
+		return texture;
+	}
 
 	virtual void Draw();
 
@@ -32,6 +36,7 @@ protected:
 	std::unique_ptr<Collider> collider;
 	std::unique_ptr<Renderer> renderer;
 	std::unique_ptr<Mesh> mesh;
+	GLuint texture;
 private:
 
 };

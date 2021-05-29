@@ -4,11 +4,12 @@
 #endif // !STB_IMAGE_IMPLEMENTATION
 #include <stdio.h>
 #include<algorithm>
-#include <glut.h>
 #include<vector>
 #include<iostream>
 #include<memory>
 #include"Objects.h"
+//#include "TextureManager.h"
+#include <glut.h>
 using namespace std;
 
 int						m_Mouse_Coord[2];	// previous mouse coordinates

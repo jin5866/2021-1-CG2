@@ -38,5 +38,7 @@ private:
 	std::vector<std::vector<GLfloat>> vn; // vertex normal
 	std::vector<std::vector<GLfloat>> vt; //vertex texture
 	std::vector<std::vector<std::vector<GLint>>> faces; // v vt vn
+
+	GLuint texture;
 };
 

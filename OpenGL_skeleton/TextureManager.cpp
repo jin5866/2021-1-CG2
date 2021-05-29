@@ -1,7 +1,20 @@
 #include "TextureManager.h"
 
-GLuint TextureManager::LoadMeshFromFile(const std::string texFile)
+TextureManager* TextureManager::getInstance()
 {
+	if (!instance) {
+		instance.reset(new TextureManager());
+	}
+	return instance.get();
+}
+
+GLuint TextureManager::LoadMeshFromFile(const std::string& texFile)
+{
+	auto tex = textures.find(texFile);
+	if (tex != textures.end()) {
+		return tex->second;
+	}
+
 	GLuint texture;
 	glGenTextures(1, &texture);
 	FILE* fp = NULL;
@@ -14,12 +27,14 @@ GLuint TextureManager::LoadMeshFromFile(const std::string texFile)
 	fclose(fp);
 
 	//bind
-	glBindTexture(GL_TEXTURE_2D, texture);
+	//glBindTexture(GL_TEXTURE_2D, texture);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 	stbi_image_free(image);
+
+	textures.insert({ texFile,texture });
 
 	return texture;
     
