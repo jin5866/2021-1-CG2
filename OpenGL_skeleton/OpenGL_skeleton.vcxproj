@@ -22,20 +22,26 @@
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="CubeRenderer.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="MeshRenderer.cpp" />
     <ClCompile Include="MyCube.cpp" />
     <ClCompile Include="MyObject.cpp" />
     <ClCompile Include="MyStruct.cpp" />
     <ClCompile Include="Objects.cpp" />
     <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="Renderers.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Collider.h" />
     <ClInclude Include="CubeRenderer.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="MeshRenderer.h" />
     <ClInclude Include="MyCube.h" />
     <ClInclude Include="MyObject.h" />
     <ClInclude Include="MyStruct.h" />
     <ClInclude Include="Objects.h" />
     <ClInclude Include="Renderer.h" />
+    <ClInclude Include="Renderers.h" />
     <ClInclude Include="stb_image.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
