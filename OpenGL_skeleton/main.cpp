@@ -15,6 +15,7 @@ unsigned char			m_Mouse_Event[3];	// mouse event handler
 float					m_Rotate[2];		// x,y
 float					m_Zoom;				// view zoom
 
+GLuint texture1, texture2;
 
 void draw_my_cube(GLfloat size);
 void draw_my_Torus(double r, double c, int rSeg, int cSeg);
@@ -54,10 +55,15 @@ void Initialize(void)
 	//Background Color Setting
 	glClearColor(0.95f, 0.95, 0.95, 1.0f);
 
+
+
 	// Loading Texture file example:
 	// GLint texture1 = LoadMeshFromFile("texture.png");
-
+	//texture1 = LoadMeshFromFile("Contents/2.png");
+	//texture2 = LoadMeshFromFile("Contents/3.png");
 	objs.push_back(make_unique<MyCube>(1.0f));
+
+
 }
 
 
@@ -90,8 +96,17 @@ void display()
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
 
-	//glutSolidTorus(2, 5, 6, 6);
-
+	////glutSolidTorus(2, 5, 6, 6);
+	//glBindTexture(GL_TEXTURE_2D, texture1);
+	//glEnable(GL_TEXTURE_2D);
+	//draw_my_cube(10);
+	//
+	//glPushMatrix();
+	//glBindTexture(GL_TEXTURE_2D, texture2);
+	////glEnable(GL_TEXTURE_2D);
+	//glTranslatef(light_pos[0], light_pos[1], light_pos[2]);
+	//draw_my_cube(10);
+	//glPopMatrix();
 
 	for (auto& obj : objs) {
 		glPushMatrix();

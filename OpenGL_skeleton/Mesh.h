@@ -24,6 +24,14 @@ public:
 	std::vector<std::vector<GLfloat>>& getVertexTexture() { return vt; }
 	std::vector<std::vector<std::vector<GLint>>>& getFaces() { return faces; }
 
+
+	Mesh(const char* texFile);
+	Mesh() = default;
+	Mesh(const Mesh&) = default;
+	Mesh(Mesh&&) = default;
+	Mesh& operator=(const Mesh&) = default;
+	Mesh& operator=(Mesh&&) = default;
+
 private:
 	std::vector<std::vector<GLfloat>> v;
 	std::vector<std::vector<GLfloat>> n; //normal
