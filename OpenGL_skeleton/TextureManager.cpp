@@ -1,5 +1,10 @@
+#pragma once
 #include "TextureManager.h"
-
+#ifndef STB_IMAGE_IMPLEMENTATION
+#define STB_IMAGE_IMPLEMENTATION
+#endif // !STB_IMAGE_IMPLEMENTATION
+#include <stb_image.h>
+#include<glut.h>
 TextureManager* TextureManager::getInstance()
 {
 	if (!instance) {
@@ -39,3 +44,5 @@ GLuint TextureManager::LoadMeshFromFile(const std::string& texFile)
 	return texture;
     
 }
+
+std::unique_ptr<TextureManager> TextureManager::instance = nullptr;
