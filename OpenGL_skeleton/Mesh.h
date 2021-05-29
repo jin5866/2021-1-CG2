@@ -20,6 +20,8 @@ public:
 
 	std::vector<std::vector<GLfloat>>& getVertex() { return v; }
 	std::vector<std::vector<GLfloat>>& getFaceNormal() { return n; }
+	std::vector<std::vector<GLfloat>>& getVertexNormal() { return vn; }
+	std::vector<std::vector<GLfloat>>& getVertexTexture() { return vt; }
 	std::vector<std::vector<std::vector<GLint>>>& getFaces() { return faces; }
 
 private:
@@ -27,6 +29,6 @@ private:
 	std::vector<std::vector<GLfloat>> n; //normal
 	std::vector<std::vector<GLfloat>> vn; // vertex normal
 	std::vector<std::vector<GLfloat>> vt; //vertex texture
-	std::vector<std::vector<std::vector<GLint>>> faces;
+	std::vector<std::vector<std::vector<GLint>>> faces; // v vt vn
 };
 

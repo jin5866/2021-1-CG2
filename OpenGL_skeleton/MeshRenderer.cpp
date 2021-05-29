@@ -7,9 +7,15 @@ void MeshRenderer::Draw()
 	auto& faces = mesh->getFaces();
 	auto& n = mesh->getFaceNormal();
 	auto& v = mesh->getVertex();
+	auto& vt = mesh->getVertexTexture();
+	auto& vn = mesh->getVertexNormal();
+	bool isvt = vt.size() > 0;
+	bool isvn = vn.size() > 0;
 
 	for (int i = 0; i < faces.size(); i++) {
 		auto& face = faces[i];
+
+		
 
 		switch (face.size())
 		{
@@ -29,8 +35,14 @@ void MeshRenderer::Draw()
 		if (n.size() >= faces.size()) {
 			glNormal3fv(&n[i][0]);
 		}
-		for (auto& vofface : face) {
-			glVertex3fv(&v[vofface[0]][0]);
+		for (auto& vertexofface : face) {
+			glVertex3fv(&v[vertexofface[0]][0]);
+			if (isvt) {
+				glTexCoord2f(vt[vertexofface[1]][0], vt[vertexofface[1]][1]);
+			}
+			if (isvn) {
+				glVertex3fv(&vn[vertexofface[2]][0]);
+			}
 		}
 		glEnd();
 	}
