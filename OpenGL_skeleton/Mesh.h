@@ -1,4 +1,5 @@
 #pragma once
+#include<string>
 #include<vector>
 #include<glut.h>
 class Mesh
@@ -23,8 +24,9 @@ public:
 	std::vector<std::vector<GLfloat>>& getVertexTexture() { return vt; }
 	std::vector<std::vector<std::vector<GLint>>>& getFaces() { return faces; }
 
+	//void print();
 
-	//Mesh(const char* texFile);
+	Mesh(const std::string texFile);
 	Mesh() = default;
 	Mesh(const Mesh&) = default;
 	Mesh(Mesh&&) = default;
