@@ -1,5 +1,5 @@
 #include "Mesh.h"
-
+#include"MyMath.h"
 
 void Mesh::setFaceNormal()
 {

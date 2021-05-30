@@ -13,9 +13,14 @@ TextureManager* TextureManager::getInstance()
 	return instance.get();
 }
 
+void TextureManager::distroy()
+{
+	delete instance.release();
+}
+
 GLuint TextureManager::LoadMeshFromFile(const std::string& texFile)
 {
-	printf("%s\n", texFile.c_str());
+	//printf("%s\n", texFile.c_str());
 	auto tex = textures.find(texFile);
 	if (tex != textures.end()) {
 		return tex->second;
