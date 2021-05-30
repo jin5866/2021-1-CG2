@@ -53,7 +53,7 @@ void MeshRenderer::Draw()
 				//glVertex3fv();
 			}
 			if (isvt) {
-				glTexCoord2f(vt[vertexofface[1]][0],vt[vertexofface[1]][1]);
+				glTexCoord2f(vt[vertexofface[1]][0],1- vt[vertexofface[1]][1]);
 			}
 			
 

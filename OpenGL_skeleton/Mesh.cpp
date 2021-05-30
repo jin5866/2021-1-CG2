@@ -115,10 +115,6 @@ Mesh::Mesh(const std::string texFile)
 
 					if (sub.size() >= 1) {
 						ver = std::stof(sub);
-						if (revt.size() == 1) {
-							//y value
-							ver = 1 - ver;
-						}
 						revt.push_back(ver);
 					}
 					last = pos + 1;
