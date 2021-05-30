@@ -2,6 +2,7 @@
 #include"MyMath.h"
 #include<iostream>
 #include <fstream>
+#include<algorithm>
 
 void Mesh::setFaceNormal()
 {
@@ -74,14 +75,25 @@ Mesh::Mesh(const std::string texFile)
 		if (line[0] == 'v') {
 			if (line[1] == 'n') {
 				//vn
-				std::vector<GLfloat> revn;
-				int n1 = line.find(' ', 3);
-				int n2 = line.find(' ', n1 + 1);
-				//int n3 = line.find(' ', n2 + 1);
+				int last = 2;
 
-				revn.push_back(std::stof(line.substr(3, n1 - 3)));
-				revn.push_back(std::stof(line.substr(n1 + 1, n2 - n1 - 1)));
-				revn.push_back(std::stof(line.substr(n2 + 1, line.size() - n2 - 1)));
+				int pos;
+				std::vector<GLfloat> revn;
+				if (line[line.size() - 1] != ' ') {
+					line.push_back(' ');
+				}
+				while ((pos = line.find(' ', last)) != std::string::npos) {
+					std::string sub = line.substr(last, pos - last);
+					//std::cout << sub << std::endl;
+					GLfloat ver;
+
+					if (sub.size() >= 1) {
+						ver = std::stof(sub);
+						revn.push_back(ver);
+					}
+					last = pos + 1;
+
+				}
 
 				//std::cout << rev[0]<<" "<<rev[1]<<" "<<rev[2] << std::endl;
 
@@ -89,14 +101,25 @@ Mesh::Mesh(const std::string texFile)
 			}
 			else if (line[1] == 't') {
 				//vt
-				std::vector<GLfloat> revt;
-				int n1 = line.find(' ', 3);
-				int n2 = line.find(' ', n1 + 1);
-				//int n3 = line.find(' ', n2 + 1);
+				int last = 3;
 
-				revt.push_back(std::stof(line.substr(3, n1 - 3)));
-				revt.push_back(std::stof(line.substr(n1 + 1, n2 - n1 - 1)));
-				revt.push_back(std::stof(line.substr(n2 + 1, line.size() - n2 - 1)));
+				int pos;
+				std::vector<GLfloat> revt;
+				if (line[line.size() - 1] != ' ') {
+					line.push_back(' ');
+				}
+				while ((pos = line.find(' ', last)) != std::string::npos) {
+					std::string sub = line.substr(last, pos - last);
+					//std::cout << sub << std::endl;
+					GLfloat ver;
+
+					if (sub.size() >= 1) {
+						ver = std::stof(sub);
+						revt.push_back(ver);
+					}
+					last = pos + 1;
+
+				}
 
 				//std::cout << rev[0]<<" "<<rev[1]<<" "<<rev[2] << std::endl;
 
@@ -104,14 +127,25 @@ Mesh::Mesh(const std::string texFile)
 			}
 			else {
 				//v
-				std::vector<GLfloat> rev;
-				int n1 = line.find(' ', 2);
-				int n2 = line.find(' ', n1 + 1);
-				//int n3 = line.find(' ', n2 + 1);
+				int last = 2;
 
-				rev.push_back(std::stof(line.substr(2, n1 - 2)));
-				rev.push_back(std::stof(line.substr(n1 + 1, n2 - n1 - 1)));
-				rev.push_back(std::stof(line.substr(n2 + 1, line.size() - n2 - 1)));
+				int pos;
+				std::vector<GLfloat> rev;
+				if (line[line.size() - 1] != ' ') {
+					line.push_back(' ');
+				}
+				while ((pos = line.find(' ', last)) != std::string::npos) {
+					std::string sub = line.substr(last, pos - last);
+					//std::cout << sub << std::endl;
+					GLfloat ver;
+
+					if (sub.size() >= 1) {
+						ver = std::stof(sub);
+						rev.push_back(ver);
+					}
+					last = pos + 1;
+
+				}
 
 				//std::cout << rev[0]<<" "<<rev[1]<<" "<<rev[2] << std::endl;
 
@@ -124,7 +158,9 @@ Mesh::Mesh(const std::string texFile)
 
 			int pos;
 			std::vector<std::vector<GLint>> ref;
-
+			if (line[line.size() - 1] != ' ') {
+				line.push_back(' ');
+			}
 			while ((pos = line.find(' ', last)) != std::string::npos) {
 				std::string sub = line.substr(last, pos - last);
 				//std::cout << sub << std::endl;
@@ -133,13 +169,20 @@ Mesh::Mesh(const std::string texFile)
 				int subpos;
 				while ((subpos = sub.find('/', sublast)) != std::string::npos) {
 					std::string subsub = sub.substr(sublast, subpos - sublast);
-					ver.push_back(std::stoi(subsub) - 1);
+					if (subsub.length() >= 1) {
+						ver.push_back(std::stoi(subsub) - 1);
+					}
+					else {
+						ver.push_back(0);
+					}
 					//std::cout << subsub << std::endl;
 					sublast = subpos + 1;
 				}
 
 				std::string subsub = sub.substr(sublast, sub.size() - sublast);
-				ver.push_back(std::stoi(subsub) - 1);
+				if (subsub.length() >= 1) {
+					ver.push_back(std::stoi(subsub) - 1);
+				}
 				//std::cout << subsub << std::endl;
 
 				ver.resize(3, 0);
@@ -168,7 +211,7 @@ Mesh::Mesh(const std::string texFile)
 		}
 	}
 
-	//print();
+	print();
 	
 	ifs.close();
 	

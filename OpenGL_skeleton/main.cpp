@@ -85,8 +85,8 @@ void display()
 
 	// *******************do something here!!*******************
 
-	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
+	//glEnable(GL_LIGHTING);
+	//glEnable(GL_LIGHT0);
 
 	GLfloat light_pos[] = { 10, 10, 0, 0 };
 	GLfloat light_amnient[] = { 0.3,0.3,0.3,1.0 };

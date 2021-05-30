@@ -15,7 +15,7 @@ void MeshRenderer::Draw()
 
 	glBindTexture(GL_TEXTURE_2D, object->getTexture());
 	glEnable(GL_TEXTURE_2D);
-
+	glScalef(10, 10, 10);
 	for (int i = 0; i < faces.size(); i++) {
 		auto& face = faces[i];
 		
@@ -40,7 +40,7 @@ void MeshRenderer::Draw()
 			break;
 		}
 		if (n.size() >= faces.size()) {
-			glNormal3fv(&n[i][0]);
+			//glNormal3fv(&n[i][0]);
 		}
 		for (auto& vertexofface : face) {
 			/*for (auto v : vn[vertexofface[2]]) {
@@ -48,13 +48,14 @@ void MeshRenderer::Draw()
 
 			}
 			printf("\n");*/
-			if (isvt) {
-				glTexCoord2f(vt[vertexofface[1]][0], vt[vertexofface[1]][1]);
-			}
 			if (isvn) {
 				glNormal3fv(&vn[vertexofface[2]][0]);
 				//glVertex3fv();
 			}
+			if (isvt) {
+				glTexCoord2f(vt[vertexofface[1]][0],1- vt[vertexofface[1]][1]);
+			}
+			
 
 			glVertex3fv(&v[vertexofface[0]][0]);
 		}
