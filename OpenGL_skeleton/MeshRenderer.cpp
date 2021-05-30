@@ -24,28 +24,39 @@ void MeshRenderer::Draw()
 		{
 		case 3:
 			glBegin(GL_TRIANGLES);
+			//printf("triangle\n");
 			break;
 		case 4:
 			glBegin(GL_QUADS);
+			//printf("GL_QUADS\n");
 			break;
 		case 2:
 			glBegin(GL_LINE);
+			//printf("GL_LINE\n");
 			break;
 		default:
 			glBegin(GL_POLYGON);
+			//printf("POLYGON\n");
 			break;
 		}
 		if (n.size() >= faces.size()) {
 			glNormal3fv(&n[i][0]);
 		}
 		for (auto& vertexofface : face) {
-			glVertex3fv(&v[vertexofface[0]][0]);
+			/*for (auto v : vn[vertexofface[2]]) {
+				printf("%f ", v);
+
+			}
+			printf("\n");*/
 			if (isvt) {
 				glTexCoord2f(vt[vertexofface[1]][0], vt[vertexofface[1]][1]);
 			}
 			if (isvn) {
-				glVertex3fv(&vn[vertexofface[2]][0]);
+				glNormal3fv(&vn[vertexofface[2]][0]);
+				//glVertex3fv();
 			}
+
+			glVertex3fv(&v[vertexofface[0]][0]);
 		}
 		glEnd();
 	}

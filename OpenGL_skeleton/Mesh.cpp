@@ -28,6 +28,38 @@ void Mesh::setFaceNormal()
 	return;
 }
 
+void Mesh::print()
+{
+	std::cout << "vertex" << std::endl;
+
+	for (auto& i : v) {
+		std::cout << "v : " << i[0] << " " << i[1] << " " << i[2] << std::endl;
+	}
+
+	std::cout << "face" << std::endl;
+
+	for (auto& face : faces) {
+		std::cout << "f : ";
+		for (auto& v : face) {
+			std::cout << v[0] << "/" << v[1] << "/" << v[2] << " ";
+		}
+		std::cout << std::endl;
+	}
+
+	std::cout << "vertextexture" << std::endl;
+
+	for (auto& i : vt) {
+		std::cout << "v : " << i[0] << " " << i[1] << " " << i[2] << std::endl;
+	}
+
+	std::cout << "vertexnormal" << std::endl;
+
+	for (auto& i : vn) {
+		std::cout << "v : " << i[0] << " " << i[1] << " " << i[2] << std::endl;
+	}
+
+}
+
 Mesh::Mesh(const std::string texFile)
 {
 	std::ifstream ifs;
@@ -42,9 +74,33 @@ Mesh::Mesh(const std::string texFile)
 		if (line[0] == 'v') {
 			if (line[1] == 'n') {
 				//vn
+				std::vector<GLfloat> revn;
+				int n1 = line.find(' ', 3);
+				int n2 = line.find(' ', n1 + 1);
+				//int n3 = line.find(' ', n2 + 1);
+
+				revn.push_back(std::stof(line.substr(3, n1 - 3)));
+				revn.push_back(std::stof(line.substr(n1 + 1, n2 - n1 - 1)));
+				revn.push_back(std::stof(line.substr(n2 + 1, line.size() - n2 - 1)));
+
+				//std::cout << rev[0]<<" "<<rev[1]<<" "<<rev[2] << std::endl;
+
+				vn.push_back(revn);
 			}
 			else if (line[1] == 't') {
 				//vt
+				std::vector<GLfloat> revt;
+				int n1 = line.find(' ', 3);
+				int n2 = line.find(' ', n1 + 1);
+				//int n3 = line.find(' ', n2 + 1);
+
+				revt.push_back(std::stof(line.substr(3, n1 - 3)));
+				revt.push_back(std::stof(line.substr(n1 + 1, n2 - n1 - 1)));
+				revt.push_back(std::stof(line.substr(n2 + 1, line.size() - n2 - 1)));
+
+				//std::cout << rev[0]<<" "<<rev[1]<<" "<<rev[2] << std::endl;
+
+				vt.push_back(revt);
 			}
 			else {
 				//v
@@ -71,7 +127,7 @@ Mesh::Mesh(const std::string texFile)
 
 			while ((pos = line.find(' ', last)) != std::string::npos) {
 				std::string sub = line.substr(last, pos - last);
-				std::cout << sub << std::endl;
+				//std::cout << sub << std::endl;
 				std::vector<GLint> ver;
 				int sublast = 0;
 				int subpos;
@@ -98,7 +154,22 @@ Mesh::Mesh(const std::string texFile)
 
 		//std::cout << line << std::endl;
 	}
-	setFaceNormal();
+	//setFaceNormal();
+	if (!vn.empty()) {
+		for (auto& face : faces) {
+			std::vector<float> re = { 0,0,0 };
+			float count = 0;
+			for (auto& voff : face) {
+				count += 1;
+				re = vn[voff[2]] + re;
+			}
+
+			n.push_back(re / count);
+		}
+	}
+
+	//print();
+	
 	ifs.close();
 	
 }

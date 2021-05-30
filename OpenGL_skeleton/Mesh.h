@@ -24,7 +24,7 @@ public:
 	std::vector<std::vector<GLfloat>>& getVertexTexture() { return vt; }
 	std::vector<std::vector<std::vector<GLint>>>& getFaces() { return faces; }
 
-	//void print();
+	void print();
 
 	Mesh(const std::string texFile);
 	Mesh() = default;
