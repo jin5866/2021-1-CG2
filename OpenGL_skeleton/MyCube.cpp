@@ -56,4 +56,6 @@ MyCube::MyCube(float size)
 	setTexture("Contents/OBJ/2-1.png");
 
 	renderer.reset(new MeshRenderer(this));
+
+	rigidbody.reset(new Rigidbody(&transform));
 }

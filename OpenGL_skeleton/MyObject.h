@@ -3,6 +3,7 @@
 #include"Collider.h"
 #include"Renderer.h"
 #include"Mesh.h"
+#include"Rigidbody.h"
 #include<memory>
 #include<string>
 
@@ -24,10 +25,15 @@ public:
 	GLuint getTexture() {
 		return texture;
 	}
+	Rigidbody* getRigidbody() {
+		return rigidbody.get();
+	}
 
 	virtual void setTexture(std::string);
 
 	virtual void Draw();
+
+	virtual void Tick(float);
 
 	MyObject() = default;
 	MyObject(const MyObject&) = default;
@@ -39,6 +45,7 @@ protected:
 	std::unique_ptr<Collider> collider;
 	std::unique_ptr<Renderer> renderer;
 	std::unique_ptr<Mesh> mesh;
+	std::unique_ptr<Rigidbody> rigidbody;
 	GLuint texture = 0;
 private:
 

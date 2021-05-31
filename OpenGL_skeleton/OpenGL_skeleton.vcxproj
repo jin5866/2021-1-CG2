@@ -32,6 +32,7 @@
     <ClCompile Include="Objects.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Renderers.cpp" />
+    <ClCompile Include="Rigidbody.cpp" />
     <ClCompile Include="TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -47,6 +48,7 @@
     <ClInclude Include="Objects.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Renderers.h" />
+    <ClInclude Include="Rigidbody.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="TextureManager.h" />
   </ItemGroup>

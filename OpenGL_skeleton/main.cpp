@@ -17,10 +17,15 @@ unsigned char			m_Mouse_Event[3];	// mouse event handler
 float					m_Rotate[2];		// x,y
 float					m_Zoom;				// view zoom
 
+int timer = 0;
+const int tickTime = 20;
+
 GLuint texture1, texture2;
 
 void draw_my_cube(GLfloat size);
 void draw_my_Torus(double r, double c, int rSeg, int cSeg);
+void Timer(int value);
+void Tick(int value);
 
 vector<unique_ptr<MyObject>> objs{};
 
@@ -384,8 +389,22 @@ int main(int argc, char* argv[]) {
 	glutMouseFunc(Mouse);
 	glutMotionFunc(MouseMotion);
 	glutKeyboardFunc(Keyboard);
-
+	glutTimerFunc(1, Timer,1);
+	glutTimerFunc(tickTime, Tick, tickTime);
 	glutMainLoop();
 	return 0;
+}
+
+void Timer(int value) {
+	timer += 1;
+	glutTimerFunc(value, Timer, value);
+}
+
+void Tick(int value) {
+	glutTimerFunc(tickTime, Tick, tickTime);
+	for (auto& obj : objs) {
+		obj->Tick(0.001 * tickTime);
+	}
+	glutPostRedisplay();
 }
 

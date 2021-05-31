@@ -9,3 +9,10 @@ void MyObject::Draw()
 {
 	if (renderer) { renderer->Draw(); }
 }
+
+void MyObject::Tick(float deltaTime)
+{
+	if (rigidbody) {
+		rigidbody->Tick(deltaTime);
+	}
+}
