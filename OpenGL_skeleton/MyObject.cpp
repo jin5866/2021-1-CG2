@@ -1,5 +1,15 @@
 #include "MyObject.h"
 #include"TextureManager.h"
+void MyObject::setSize(std::vector<GLfloat>& newsize)
+{
+	size = newsize;
+}
+
+void MyObject::setSize(std::vector<GLfloat> newsize)
+{
+	size = newsize;
+}
+
 void MyObject::setTexture(std::string file)
 {
 	texture = TextureManager::getInstance()->LoadMeshFromFile(file);

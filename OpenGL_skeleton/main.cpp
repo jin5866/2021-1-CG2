@@ -10,6 +10,7 @@
 #include"Objects.h"
 //#include "TextureManager.h"
 #include <glut.h>
+#include"MyMath.h"
 using namespace std;
 
 int						m_Mouse_Coord[2];	// previous mouse coordinates
@@ -26,6 +27,7 @@ void draw_my_cube(GLfloat size);
 void draw_my_Torus(double r, double c, int rSeg, int cSeg);
 void Timer(int value);
 void Tick(int value);
+void spawnName();
 
 vector<unique_ptr<MyObject>> objs{};
 
@@ -54,6 +56,8 @@ vector<unique_ptr<MyObject>> objs{};
 //	return texture;
 //}
 
+
+
 void Initialize(void)
 {
 	m_Zoom = 120;
@@ -63,21 +67,81 @@ void Initialize(void)
 	glClearColor(0.95f, 0.95, 0.95, 1.0f);
 
 
+	spawnName();
+
 
 	// Loading Texture file example:
 	// GLint texture1 = LoadMeshFromFile("texture.png");
 	//texture1 = LoadMeshFromFile("Contents/2.png");
 	//texture2 = LoadMeshFromFile("Contents/3.png");
-	unique_ptr<OBJObject> a = make_unique<OBJObject>("Contents/OBJ/2-3.obj", "Contents/OBJ/2-3.png");
-	a->getTransform()->position[0] = 10;
-	a->getTransform()->position[2] = 10;
-	a->getRigidbody()->setUseGravity(true);
-	objs.push_back(move(a));
-	objs.push_back(make_unique<OBJObject>("Contents/OBJ/2-1.obj", "Contents/OBJ/2-1.png"));
-	objs.push_back(make_unique<OBJObject>("Contents/OBJ/2-2.obj", "Contents/OBJ/2-2.png"));
 
 }
 
+
+void spawnName() {
+	std::vector<float> leftpos = { 50,0,0 };
+	std::vector<float> rightpos = { -50,0,0 };
+
+	std::vector<float> lastpos = { 0,-10,0 };
+	std::vector<float> firstpos = { -1,5,0 };
+	std::vector<float> secondpos = { 18,-3,0 };
+	std::vector<float> firstuppos = { 0,-15,0 };
+	std::vector<float> lastdepos = { -3,3,0 };
+	unique_ptr<OBJObject> a = make_unique<OBJObject>("Contents/OBJ/2-3.obj", "Contents/OBJ/2-3.png");
+	a->getTransform()->setPosition(lastpos);
+	a->getRigidbody()->setUseGravity(true);
+	a->setSize({ 10.0,10.0,10.0 });
+	objs.push_back(move(a));
+
+	unique_ptr<OBJObject> b = make_unique<OBJObject>("Contents/OBJ/2-1.obj", "Contents/OBJ/2-1.png");
+	b->getTransform()->setPosition(firstpos);
+	b->getRigidbody()->setUseGravity(true);
+	b->setSize({ 10.0,10.0,10.0 });
+	objs.push_back(move(b));
+
+	unique_ptr<OBJObject> c = make_unique<OBJObject>("Contents/OBJ/2-2.obj", "Contents/OBJ/2-2.png");
+	c->getTransform()->setPosition(secondpos);
+	c->getRigidbody()->setUseGravity(true);
+	c->setSize({ 12.0,12.0,12.0 });
+	objs.push_back(move(c));
+
+
+	unique_ptr<OBJObject> d = make_unique<OBJObject>("Contents/OBJ/1-1.obj", "Contents/OBJ/1-1.png");
+	d->getTransform()->setPosition(firstpos + leftpos);
+	d->getRigidbody()->setUseGravity(true);
+	d->setSize({ 10.0,10.0,10.0 });
+	objs.push_back(move(d));
+
+	unique_ptr<OBJObject> e = make_unique<OBJObject>("Contents/OBJ/1-2.obj", "Contents/OBJ/1-2.png");
+	e->getTransform()->setPosition(secondpos + leftpos);
+	e->getRigidbody()->setUseGravity(true);
+	e->setSize({ 12.0,12.0,12.0 });
+	objs.push_back(move(e));
+
+	unique_ptr<OBJObject> f = make_unique<OBJObject>("Contents/OBJ/3-1-1.obj", "Contents/OBJ/3-1-1.png");
+	f->getTransform()->setPosition(firstpos + rightpos + firstuppos);
+	f->getRigidbody()->setUseGravity(true);
+	f->setSize({ 10.0,10.0,10.0 });
+	objs.push_back(move(f));
+
+	unique_ptr<OBJObject> g = make_unique<OBJObject>("Contents/OBJ/3-1-2.obj", "Contents/OBJ/3-1-2.png");
+	g->getTransform()->setPosition(firstpos + rightpos);
+	g->getRigidbody()->setUseGravity(true);
+	g->setSize({ 8,8,8 });
+	objs.push_back(move(g));
+
+	unique_ptr<OBJObject>h = make_unique<OBJObject>("Contents/OBJ/3-2.obj", "Contents/OBJ/3-2.png");
+	h->getTransform()->setPosition(secondpos + rightpos + firstuppos);
+	h->getRigidbody()->setUseGravity(true);
+	h->setSize({ 12.0,12.0,12.0 });
+	objs.push_back(move(h));
+
+	unique_ptr<OBJObject> i = make_unique<OBJObject>("Contents/OBJ/3-3.obj", "Contents/OBJ/3-3.png");
+	i->getTransform()->setPosition(lastpos + rightpos + lastdepos);
+	i->getRigidbody()->setUseGravity(true);
+	i->setSize({ 10.0,10.0,10.0 });
+	objs.push_back(move(i));
+}
 
 void display()
 {

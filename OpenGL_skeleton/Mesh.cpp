@@ -211,7 +211,7 @@ Mesh::Mesh(const std::string texFile)
 		}
 	}
 
-	print();
+	//print();
 	
 	ifs.close();
 	

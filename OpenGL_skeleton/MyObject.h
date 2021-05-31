@@ -33,6 +33,13 @@ public:
 		return &transform;
 	}
 
+	const std::vector<GLfloat>& getSize() {
+		return size;
+	}
+
+	virtual void setSize(std::vector<GLfloat>& size);
+	virtual void setSize(std::vector<GLfloat> size);
+
 	virtual void setTexture(std::string);
 
 	virtual void Draw();
