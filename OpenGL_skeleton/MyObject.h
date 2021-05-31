@@ -29,6 +29,10 @@ public:
 		return rigidbody.get();
 	}
 
+	Transform* getTransform() {
+		return &transform;
+	}
+
 	virtual void setTexture(std::string);
 
 	virtual void Draw();
@@ -47,6 +51,7 @@ protected:
 	std::unique_ptr<Mesh> mesh;
 	std::unique_ptr<Rigidbody> rigidbody;
 	GLuint texture = 0;
+	std::vector<GLfloat> size = { 1.0,1.0,1.0 };
 private:
 
 };

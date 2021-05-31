@@ -14,13 +14,15 @@ public:
 	Rigidbody(Rigidbody&&) = default;
 	Rigidbody& operator=(const Rigidbody&) = default;
 	Rigidbody& operator=(Rigidbody&&) = default;
+
+	void setUseGravity(bool newb);
 private:
 	std::vector<float> getRealA();
 
 	std::vector<float> v = {0,0,0};
 	std::vector<float> a = {0,0,0};
 	float mass = 1;
-	bool usegravity = true	;
+	bool usegravity = false	;
 
 	Transform* transform;
 

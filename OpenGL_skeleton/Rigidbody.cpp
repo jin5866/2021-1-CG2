@@ -14,6 +14,11 @@ void Rigidbody::Tick(float deltaTime)
 
 
 
+void Rigidbody::setUseGravity(bool newb)
+{
+	usegravity = newb;
+}
+
 std::vector<float> Rigidbody::getRealA()
 {
 	if (usegravity) {

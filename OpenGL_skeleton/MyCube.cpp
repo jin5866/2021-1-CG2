@@ -1,10 +1,11 @@
 #include "MyCube.h"
+#include "Renderers.h"
 
 MyCube::MyCube(float size)
 {
 	
 
-	auto amesh = new Mesh("Contents/OBJ/2-1.obj");
+	auto amesh = new Mesh("Contents/OBJ/2-3.obj");
 	//std::vector<std::vector<GLfloat>> v = {
 	//	{0.500000f * size, -0.500000f * size, 0.500000f * size},
 	//	{-0.500000f * size, -0.500000f * size, 0.500000f * size},
@@ -53,9 +54,10 @@ MyCube::MyCube(float size)
 
 	mesh.reset(amesh);
 
-	setTexture("Contents/OBJ/2-1.png");
+	setTexture("Contents/OBJ/2-3.png");
 
 	renderer.reset(new MeshRenderer(this));
 
 	rigidbody.reset(new Rigidbody(&transform));
+
 }

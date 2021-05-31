@@ -68,8 +68,13 @@ void Initialize(void)
 	// GLint texture1 = LoadMeshFromFile("texture.png");
 	//texture1 = LoadMeshFromFile("Contents/2.png");
 	//texture2 = LoadMeshFromFile("Contents/3.png");
-	objs.push_back(make_unique<MyCube>(10.0f));
-
+	unique_ptr<OBJObject> a = make_unique<OBJObject>("Contents/OBJ/2-3.obj", "Contents/OBJ/2-3.png");
+	a->getTransform()->position[0] = 10;
+	a->getTransform()->position[2] = 10;
+	a->getRigidbody()->setUseGravity(true);
+	objs.push_back(move(a));
+	objs.push_back(make_unique<OBJObject>("Contents/OBJ/2-1.obj", "Contents/OBJ/2-1.png"));
+	objs.push_back(make_unique<OBJObject>("Contents/OBJ/2-2.obj", "Contents/OBJ/2-2.png"));
 
 }
 

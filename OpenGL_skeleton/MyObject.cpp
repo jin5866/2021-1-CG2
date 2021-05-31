@@ -7,7 +7,13 @@ void MyObject::setTexture(std::string file)
 }
 void MyObject::Draw()
 {
-	if (renderer) { renderer->Draw(); }
+	if (renderer) { 
+		glPushMatrix();
+		glScalef(size[0], size[1], size[2]);
+		renderer->Draw(); 
+		glPopMatrix();
+	}
+	
 }
 
 void MyObject::Tick(float deltaTime)

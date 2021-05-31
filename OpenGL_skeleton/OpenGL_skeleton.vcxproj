@@ -30,6 +30,7 @@
     <ClCompile Include="MyObject.cpp" />
     <ClCompile Include="MyStruct.cpp" />
     <ClCompile Include="Objects.cpp" />
+    <ClCompile Include="OBJObject.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Renderers.cpp" />
     <ClCompile Include="Rigidbody.cpp" />
@@ -46,6 +47,7 @@
     <ClInclude Include="MyObject.h" />
     <ClInclude Include="MyStruct.h" />
     <ClInclude Include="Objects.h" />
+    <ClInclude Include="OBJObject.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Renderers.h" />
     <ClInclude Include="Rigidbody.h" />
