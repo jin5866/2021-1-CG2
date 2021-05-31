@@ -2,13 +2,13 @@
 #include<vector>
 #include<glut.h>
 
-std::vector<float> cross(std::vector<float>& a, std::vector<float>& b);
-std::vector<float> operator- (std::vector<float>& a, std::vector<float>& b);
-std::vector<float> operator+ (std::vector<float>& a, std::vector<float>& b);
-std::vector<float> operator* (std::vector<float>& a, float& b);
-std::vector<float> operator/ (std::vector<float>& a, float& ad);
-float abs(std::vector<float>& a);
-std::vector<float> normalize(std::vector<float>& a);
+std::vector<float> cross(const std::vector<float>& a, const std::vector<float>& b);
+std::vector<float> operator- (const std::vector<float>& a, const std::vector<float>& b);
+std::vector<float> operator+ (const std::vector<float>& a, const std::vector<float>& b);
+std::vector<float> operator* (const std::vector<float>& a, const float& b);
+std::vector<float> operator/ (const std::vector<float>& a, const float& ad);
+float abs(const std::vector<float>& a);
+std::vector<float> normalize(const std::vector<float>& a);
 
 
 
