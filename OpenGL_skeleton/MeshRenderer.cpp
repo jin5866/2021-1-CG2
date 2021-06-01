@@ -15,7 +15,7 @@ void MeshRenderer::Draw()
 
 	glBindTexture(GL_TEXTURE_2D, object->getTexture());
 	glEnable(GL_TEXTURE_2D);
-	glScalef(10, 10, 10);
+	//glScalef(10, 10, 10);
 	for (int i = 0; i < faces.size(); i++) {
 		auto& face = faces[i];
 		

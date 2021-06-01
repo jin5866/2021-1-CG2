@@ -91,56 +91,56 @@ void spawnName() {
 	unique_ptr<OBJObject> a = make_unique<OBJObject>("Contents/OBJ/2-3.obj", "Contents/OBJ/2-3.png");
 	a->getTransform()->setPosition(lastpos);
 	a->getRigidbody()->setUseGravity(true);
-	a->setSize({ 10.0,10.0,10.0 });
+	a->setSize({ 100.0,100.0,100.0 });
 	objs.push_back(move(a));
 
 	unique_ptr<OBJObject> b = make_unique<OBJObject>("Contents/OBJ/2-1.obj", "Contents/OBJ/2-1.png");
 	b->getTransform()->setPosition(firstpos);
 	b->getRigidbody()->setUseGravity(true);
-	b->setSize({ 10.0,10.0,10.0 });
+	b->setSize({ 100.0,100.0,100.0 });
 	objs.push_back(move(b));
 
 	unique_ptr<OBJObject> c = make_unique<OBJObject>("Contents/OBJ/2-2.obj", "Contents/OBJ/2-2.png");
 	c->getTransform()->setPosition(secondpos);
 	c->getRigidbody()->setUseGravity(true);
-	c->setSize({ 12.0,12.0,12.0 });
+	c->setSize({ 120.0,120.0,120.0 });
 	objs.push_back(move(c));
 
 
 	unique_ptr<OBJObject> d = make_unique<OBJObject>("Contents/OBJ/1-1.obj", "Contents/OBJ/1-1.png");
 	d->getTransform()->setPosition(firstpos + leftpos);
 	d->getRigidbody()->setUseGravity(true);
-	d->setSize({ 10.0,10.0,10.0 });
+	d->setSize({ 100.0,100.0,100.0 });
 	objs.push_back(move(d));
 
 	unique_ptr<OBJObject> e = make_unique<OBJObject>("Contents/OBJ/1-2.obj", "Contents/OBJ/1-2.png");
 	e->getTransform()->setPosition(secondpos + leftpos);
 	e->getRigidbody()->setUseGravity(true);
-	e->setSize({ 12.0,12.0,12.0 });
+	e->setSize({ 120.0,120.0,120.0 });
 	objs.push_back(move(e));
 
 	unique_ptr<OBJObject> f = make_unique<OBJObject>("Contents/OBJ/3-1-1.obj", "Contents/OBJ/3-1-1.png");
 	f->getTransform()->setPosition(firstpos + rightpos + firstuppos);
 	f->getRigidbody()->setUseGravity(true);
-	f->setSize({ 10.0,10.0,10.0 });
+	f->setSize({ 100.0,100.0,100.0 });
 	objs.push_back(move(f));
 
 	unique_ptr<OBJObject> g = make_unique<OBJObject>("Contents/OBJ/3-1-2.obj", "Contents/OBJ/3-1-2.png",true);
 	g->getTransform()->setPosition(firstpos + rightpos);
 	g->getRigidbody()->setUseGravity(true);
-	g->setSize({ 8,8,8 });
+	g->setSize({ 80,80,80 });
 	objs.push_back(move(g));
 
 	unique_ptr<OBJObject>h = make_unique<OBJObject>("Contents/OBJ/3-2.obj", "Contents/OBJ/3-2.png");
 	h->getTransform()->setPosition(secondpos + rightpos + firstuppos);
 	h->getRigidbody()->setUseGravity(true);
-	h->setSize({ 12.0,12.0,12.0 });
+	h->setSize({ 120.0,120.0,120.0 });
 	objs.push_back(move(h));
 
 	unique_ptr<OBJObject> i = make_unique<OBJObject>("Contents/OBJ/3-3.obj", "Contents/OBJ/3-3.png",true);
 	i->getTransform()->setPosition(lastpos + rightpos + lastdepos);
 	i->getRigidbody()->setUseGravity(true);
-	i->setSize({ 10.0,10.0,10.0 });
+	i->setSize({ 100.0,100.0,100.0 });
 	objs.push_back(move(i));
 }
 
