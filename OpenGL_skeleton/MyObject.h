@@ -33,10 +33,6 @@ public:
 		return &transform;
 	}
 
-	const std::vector<GLfloat>& getSize() {
-		return size;
-	}
-
 	virtual void setSize(std::vector<GLfloat>& size);
 	virtual void setSize(std::vector<GLfloat> size);
 
@@ -58,7 +54,7 @@ protected:
 	std::unique_ptr<Mesh> mesh;
 	std::unique_ptr<Rigidbody> rigidbody;
 	GLuint texture = 0;
-	std::vector<GLfloat> size = { 1.0,1.0,1.0 };
+	//std::vector<GLfloat> size = { 1.0,1.0,1.0 };
 private:
 
 };

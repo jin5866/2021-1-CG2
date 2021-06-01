@@ -49,15 +49,14 @@ void MeshRenderer::Draw()
 			}
 			printf("\n");*/
 			if (isvn) {
-				glNormal3fv(&vn[vertexofface[2]][0]);
+				glNormal3f(vn[vertexofface[2]][0], vn[vertexofface[2]][1], vn[vertexofface[2]][2]);
 				//glVertex3fv();
 			}
 			if (isvt) {
 				glTexCoord2f(vt[vertexofface[1]][0],1- vt[vertexofface[1]][1]);
 			}
-			
 
-			glVertex3fv(&v[vertexofface[0]][0]);
+			glVertex3f(v[vertexofface[0]][0], v[vertexofface[0]][1], v[vertexofface[0]][2]);
 		}
 		glEnd();
 	}

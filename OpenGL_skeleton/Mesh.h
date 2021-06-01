@@ -26,7 +26,7 @@ public:
 
 	void print();
 
-	Mesh(const std::string texFile);
+	Mesh(const std::string texFile, bool yrevers = false);
 	Mesh() = default;
 	Mesh(const Mesh&) = default;
 	Mesh(Mesh&&) = default;

@@ -28,6 +28,7 @@ void draw_my_Torus(double r, double c, int rSeg, int cSeg);
 void Timer(int value);
 void Tick(int value);
 void spawnName();
+void removeAllObj();
 
 vector<unique_ptr<MyObject>> objs{};
 
@@ -124,7 +125,7 @@ void spawnName() {
 	f->setSize({ 10.0,10.0,10.0 });
 	objs.push_back(move(f));
 
-	unique_ptr<OBJObject> g = make_unique<OBJObject>("Contents/OBJ/3-1-2.obj", "Contents/OBJ/3-1-2.png");
+	unique_ptr<OBJObject> g = make_unique<OBJObject>("Contents/OBJ/3-1-2.obj", "Contents/OBJ/3-1-2.png",true);
 	g->getTransform()->setPosition(firstpos + rightpos);
 	g->getRigidbody()->setUseGravity(true);
 	g->setSize({ 8,8,8 });
@@ -136,11 +137,15 @@ void spawnName() {
 	h->setSize({ 12.0,12.0,12.0 });
 	objs.push_back(move(h));
 
-	unique_ptr<OBJObject> i = make_unique<OBJObject>("Contents/OBJ/3-3.obj", "Contents/OBJ/3-3.png");
+	unique_ptr<OBJObject> i = make_unique<OBJObject>("Contents/OBJ/3-3.obj", "Contents/OBJ/3-3.png",true);
 	i->getTransform()->setPosition(lastpos + rightpos + lastdepos);
 	i->getRigidbody()->setUseGravity(true);
 	i->setSize({ 10.0,10.0,10.0 });
 	objs.push_back(move(i));
+}
+
+void removeAllObj() {
+	objs.clear();
 }
 
 void display()
@@ -159,13 +164,13 @@ void display()
 
 	// *******************do something here!!*******************
 
-	//glEnable(GL_LIGHTING);
-	//glEnable(GL_LIGHT0);
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
 
-	GLfloat light_pos[] = { 10, 10, 0, 0 };
-	GLfloat light_amnient[] = { 0.3,0.3,0.3,1.0 };
-	GLfloat light_diffuse[] = { 0,0,1,1.0 };
-	GLfloat light_specular[] = { 1,1,1,1 };
+	GLfloat light_pos[] = { 10, 10, 10, 0 };
+	GLfloat light_amnient[] = {0.1,0.1,0.1,1.0 };
+	GLfloat light_diffuse[] = {0.5,0.5,0.5,1.0 };
+	GLfloat light_specular[] = { 0.3,0.3,0.3,1 };
 
 	glLightfv(GL_LIGHT0, GL_POSITION, light_pos);
 	glLightfv(GL_LIGHT0, GL_AMBIENT, light_amnient);
@@ -184,18 +189,30 @@ void display()
 	//draw_my_cube(10);
 	//glPopMatrix();
 
+	float noMat[] = { 0,0,0,1 };
+	float matAmb[] = { 0.33,0.22,0.03,1.0 };
+	float matDif[] = { 0.78,0.57,0.11,1.0 };
+	float matSpec[] = { 0.99,0.94,0.81,1.0 };
+	float matShininess = 100;
+
+	float allone[] = { 1,1,1,1 };
+
+	
+	glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, noMat);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, matAmb);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, matDif);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, matSpec);
+	//glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, matShininess);
+
+	//draw_my_cube(10);
+
 	for (auto& obj : objs) {
-		glPushMatrix();
-		glTranslatef(obj->transform.position[0], obj->transform.position[1], obj->transform.position[2]);
-		glRotatef(obj->transform.rotation[0], 1, 0, 0);
-		glRotatef(obj->transform.rotation[1], 0, 1, 0);
-		glRotatef(obj->transform.rotation[2], 0, 0, 1);
-		glScalef(obj->transform.scale[0], obj->transform.scale[1], obj->transform.scale[2]);
 		obj->Draw();
-		glPopMatrix();
 	}
 
 	
+	
+
 	//*******************Implemente the lighitng and texturing *******************
 	//*******************Drawing your characters*******************	    
 
@@ -224,6 +241,8 @@ void display()
 
 	glutSwapBuffers();
 }
+
+
 
 
 void Reshape(int w, int h)
@@ -289,6 +308,12 @@ void Keyboard(unsigned char key, int x, int y)
 	{
 	case 'q':
 		exit(0);
+		break;
+	case 'r':
+		removeAllObj();
+		break;
+	case 'e':
+		spawnName();
 		break;
 		// *******************do something here!!*******************
 		// According to the keyboard to control the characters

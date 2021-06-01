@@ -5,7 +5,7 @@ class OBJObject :
     public MyObject
 {
 public:
-    OBJObject(std::string, std::string);
+    OBJObject(std::string, std::string,bool = false);
     OBJObject();
     OBJObject(const OBJObject&) = default;
     OBJObject(OBJObject&&) = default;
