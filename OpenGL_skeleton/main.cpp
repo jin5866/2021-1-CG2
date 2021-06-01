@@ -29,6 +29,9 @@ void Timer(int value);
 void Tick(int value);
 void spawnName();
 void removeAllObj();
+void LightSwitch(int);
+
+bool lighton[8] = {false};
 
 vector<unique_ptr<MyObject>> objs{};
 
@@ -80,6 +83,8 @@ void Initialize(void)
 
 
 void spawnName() {
+
+	bool grav = false;
 	std::vector<float> leftpos = { 50,0,0 };
 	std::vector<float> rightpos = { -50,0,0 };
 
@@ -90,56 +95,56 @@ void spawnName() {
 	std::vector<float> lastdepos = { -3,3,0 };
 	unique_ptr<OBJObject> a = make_unique<OBJObject>("Contents/OBJ/2-3.obj", "Contents/OBJ/2-3.png");
 	a->getTransform()->setPosition(lastpos);
-	a->getRigidbody()->setUseGravity(true);
+	a->getRigidbody()->setUseGravity(grav);
 	a->setSize({ 100.0,100.0,100.0 });
 	objs.push_back(move(a));
 
 	unique_ptr<OBJObject> b = make_unique<OBJObject>("Contents/OBJ/2-1.obj", "Contents/OBJ/2-1.png");
 	b->getTransform()->setPosition(firstpos);
-	b->getRigidbody()->setUseGravity(true);
+	b->getRigidbody()->setUseGravity(grav);
 	b->setSize({ 100.0,100.0,100.0 });
 	objs.push_back(move(b));
 
 	unique_ptr<OBJObject> c = make_unique<OBJObject>("Contents/OBJ/2-2.obj", "Contents/OBJ/2-2.png");
 	c->getTransform()->setPosition(secondpos);
-	c->getRigidbody()->setUseGravity(true);
+	c->getRigidbody()->setUseGravity(grav);
 	c->setSize({ 120.0,120.0,120.0 });
 	objs.push_back(move(c));
 
 
 	unique_ptr<OBJObject> d = make_unique<OBJObject>("Contents/OBJ/1-1.obj", "Contents/OBJ/1-1.png");
 	d->getTransform()->setPosition(firstpos + leftpos);
-	d->getRigidbody()->setUseGravity(true);
+	d->getRigidbody()->setUseGravity(grav);
 	d->setSize({ 100.0,100.0,100.0 });
 	objs.push_back(move(d));
 
 	unique_ptr<OBJObject> e = make_unique<OBJObject>("Contents/OBJ/1-2.obj", "Contents/OBJ/1-2.png");
 	e->getTransform()->setPosition(secondpos + leftpos);
-	e->getRigidbody()->setUseGravity(true);
+	e->getRigidbody()->setUseGravity(grav);
 	e->setSize({ 120.0,120.0,120.0 });
 	objs.push_back(move(e));
 
 	unique_ptr<OBJObject> f = make_unique<OBJObject>("Contents/OBJ/3-1-1.obj", "Contents/OBJ/3-1-1.png");
 	f->getTransform()->setPosition(firstpos + rightpos + firstuppos);
-	f->getRigidbody()->setUseGravity(true);
+	f->getRigidbody()->setUseGravity(grav);
 	f->setSize({ 100.0,100.0,100.0 });
 	objs.push_back(move(f));
 
 	unique_ptr<OBJObject> g = make_unique<OBJObject>("Contents/OBJ/3-1-2.obj", "Contents/OBJ/3-1-2.png",true);
 	g->getTransform()->setPosition(firstpos + rightpos);
-	g->getRigidbody()->setUseGravity(true);
+	g->getRigidbody()->setUseGravity(grav);
 	g->setSize({ 80,80,80 });
 	objs.push_back(move(g));
 
 	unique_ptr<OBJObject>h = make_unique<OBJObject>("Contents/OBJ/3-2.obj", "Contents/OBJ/3-2.png");
 	h->getTransform()->setPosition(secondpos + rightpos + firstuppos);
-	h->getRigidbody()->setUseGravity(true);
+	h->getRigidbody()->setUseGravity(grav);
 	h->setSize({ 120.0,120.0,120.0 });
 	objs.push_back(move(h));
 
 	unique_ptr<OBJObject> i = make_unique<OBJObject>("Contents/OBJ/3-3.obj", "Contents/OBJ/3-3.png",true);
 	i->getTransform()->setPosition(lastpos + rightpos + lastdepos);
-	i->getRigidbody()->setUseGravity(true);
+	i->getRigidbody()->setUseGravity(grav);
 	i->setSize({ 100.0,100.0,100.0 });
 	objs.push_back(move(i));
 }
@@ -165,7 +170,14 @@ void display()
 	// *******************do something here!!*******************
 
 	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
+	if (lighton[0]) {
+		glEnable(GL_LIGHT0);
+	}
+	if (lighton[1]) {
+		
+		glEnable(GL_LIGHT1);
+	}
+
 
 	GLfloat light_pos[] = { 10, 10, 10, 0 };
 	GLfloat light_amnient[] = {0.1,0.1,0.1,1.0 };
@@ -176,6 +188,18 @@ void display()
 	glLightfv(GL_LIGHT0, GL_AMBIENT, light_amnient);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
+
+	//LightSwitch(1);
+
+	GLfloat light_pos1[] = { -10, -10, 10, 0 };
+	GLfloat light_amnient1[] = { 0.1,0.1,0.1,1.0 };
+	GLfloat light_diffuse1[] = { 0,0.5,0.5,1.0 };
+	GLfloat light_specular1[] = { 0.3,0.3,0.3,1 };
+
+	glLightfv(GL_LIGHT1, GL_POSITION, light_pos1);
+	glLightfv(GL_LIGHT1, GL_AMBIENT, light_amnient1);
+	glLightfv(GL_LIGHT1, GL_DIFFUSE, light_diffuse1);
+	glLightfv(GL_LIGHT1, GL_SPECULAR, light_specular1);
 
 	////glutSolidTorus(2, 5, 6, 6);
 	//glBindTexture(GL_TEXTURE_2D, texture1);
@@ -219,6 +243,11 @@ void display()
 	/*glPushMatrix();
 	glTranslatef(light_pos[0], light_pos[1], light_pos[2]);
 	glutSolidSphere(1, 10, 10);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(light_pos1[0], light_pos1[1], light_pos1[2]);
+	glutSolidSphere(1, 10, 10);
 	glPopMatrix();*/
 
 	/*
@@ -240,6 +269,39 @@ void display()
 	glPopMatrix();*/
 
 	glutSwapBuffers();
+}
+
+void LightSwitch(int lightnum) {
+	auto light = GL_LIGHT0;
+	switch (lightnum)
+	{
+	case 0:
+		light = GL_LIGHT0;;
+		break;
+	case 1:
+		light = GL_LIGHT1;
+		break;
+	case 2:
+		light = GL_LIGHT2;
+		break;
+	case 3:
+		light = GL_LIGHT3;
+		break;
+	case 4:
+		light = GL_LIGHT4;
+		break;
+	default:
+		break;
+	}
+
+	if (lighton[lightnum]) {
+		glDisable(light);
+		lighton[lightnum] = false;
+	}
+	else {
+		//glEnable(light);
+		lighton[lightnum] = true;
+	}
 }
 
 
@@ -314,6 +376,12 @@ void Keyboard(unsigned char key, int x, int y)
 		break;
 	case 'e':
 		spawnName();
+		break;
+	case '1':
+		LightSwitch(0);
+		break;
+	case '2': 
+		LightSwitch(1);
 		break;
 		// *******************do something here!!*******************
 		// According to the keyboard to control the characters

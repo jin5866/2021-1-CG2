@@ -61,7 +61,7 @@ void Mesh::print()
 
 }
 
-Mesh::Mesh(const std::string texFile, bool yrevers)
+Mesh::Mesh(const std::string texFile, bool xrotated)
 {
 	std::ifstream ifs;
 	ifs.open(texFile);
@@ -96,11 +96,13 @@ Mesh::Mesh(const std::string texFile, bool yrevers)
 				}
 
 				//std::cout << rev[0]<<" "<<rev[1]<<" "<<rev[2] << std::endl;
-				if (yrevers) {
-					revn[1] = -revn[1];
+				if (xrotated) {
+					vn.push_back({ revn[0], -revn[1],-revn[2] });
 				}
-				revn[2] = -revn[2];
-				vn.push_back(revn);
+				else {
+					vn.push_back({ revn[0], -revn[2], revn[1] });
+				}
+				
 			}
 			else if (line[1] == 't') {
 				//vt

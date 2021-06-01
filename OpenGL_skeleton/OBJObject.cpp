@@ -1,9 +1,9 @@
 #include "OBJObject.h"
 #include "Renderers.h"
 
-OBJObject::OBJObject(std::string meshFile, std::string textureFile, bool yreverse)
+OBJObject::OBJObject(std::string meshFile, std::string textureFile, bool xrotated)
 {
-	auto amesh = new Mesh(meshFile,yreverse);
+	auto amesh = new Mesh(meshFile, xrotated);
 	mesh.reset(amesh);
 
 	setTexture(textureFile);
