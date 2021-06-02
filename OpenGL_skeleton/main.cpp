@@ -230,8 +230,8 @@ void display()
 	//glPopMatrix();
 
 	float noMat[] = { 0,0,0,1 };
-	float matAmb[] = { 0.33,0.22,0.03,1.0 };
-	float matDif[] = { 0.78,0.57,0.11,1.0 };
+	float matAmb[] = { 0,0,0,1.0 };//{ 0.33,0.22,0.03,1.0 };
+	float matDif[] = {1,1,1,1};//{ 0.78,0.57,0.11,1.0 };
 	float matSpec[] = { 0.99,0.94,0.81,1.0 };
 	float matShininess = 100;
 
@@ -250,8 +250,8 @@ void display()
 		obj->Draw(drawcollider);
 	}
 
-	
-	
+	CollisionDetector::getInstance()->draw();
+	//draw_my_Torus(5, 10, 10, 10);
 
 	//*******************Implemente the lighitng and texturing *******************
 	//*******************Drawing your characters*******************	    
@@ -460,7 +460,8 @@ void draw_my_cube(GLfloat size) {
 }
 
 
-void draw_my_Torus(double r, double c, int rSeg, int cSeg) {
+void draw_my_Torus(double r, double c, int rSeg, int cSeg)
+{
 	// r: inner radius, c:outer radius
 	// rSeg and cSeg: number of side and ring's segment
 	const double PI = 3.1415926;
@@ -486,6 +487,7 @@ void draw_my_Torus(double r, double c, int rSeg, int cSeg) {
 
 				float u = (i + k) / (float)rSeg;
 				float v = j / (float)cSeg;
+
 				float* uv_coord = new float[2];
 				uv_coord[0] = u, uv_coord[1] = v;
 				uv.push_back(uv_coord);  //save uv coordinate 
@@ -493,41 +495,83 @@ void draw_my_Torus(double r, double c, int rSeg, int cSeg) {
 		}
 	}
 
-	// save the face information(vertices index)
+	/************Code update part: start*************/
+	// save the face information(vertices index) 
 	for (int i = 0; i < torus_v.size() - 3; i += 2)
 	{
 		int* new_ver = new int[4];
+		// one face with 4 vertex index
+
 		new_ver[0] = i, new_ver[1] = i + 1, new_ver[2] = i + 2, new_ver[3] = i + 3;
-		torus_f.push_back(new_ver);
+		//예외 처리
+		if ((int)torus_v[i + 1][0] == (int)torus_v[i + 2][0] && (int)torus_v[i + 1][1] == (int)torus_v[i + 2][1] && (int)torus_v[i + 1][2] == (int)torus_v[i + 2][2])
+		{
+			continue;
+		}
+		else
+		{
+			torus_f.push_back(new_ver);
+		}
 	}
 
-	// *******************do something here!!******************* 
-	// calculate face normal
-	for (int i = 0; i < torus_v.size() - 3; i += 2)
+
+	// calculate vertex normal
+	// initialize the size of vertex normal(torus_v_n), the size same as vertex
+	for (int i = 0; i < torus_v.size(); i++)
 	{
+		float* new_ver = new float[4];
+		new_ver[0] = (float)0, new_ver[1] = (float)0, new_ver[2] = (float)0, new_ver[3] = 0;
+		torus_v_n.push_back(new_ver);
+	}
+
+	// calculate face normal 
+	for (int i = 0; i < torus_f.size(); i++)
+	{
+
 		float* normal = new float[3];
 
-		//three position in one face
-		float p1[3] = { torus_v[i][0],torus_v[i][1],torus_v[i][2] };
-		float p2[3] = { torus_v[i + 1][0],torus_v[i + 1][1],torus_v[i + 1][2] };
-		float p3[3] = { torus_v[i + 2][0],torus_v[i + 2][1],torus_v[i + 2][2] };
+		// find three Arbitrary vertex in one face
+		// the three vertex could be: torus_f[i][0],torus_f[i][1],torus_f[i][2] 
+		//Or:  torus_f[i][0],torus_f[i][1],torus_f[i][3]. etc..
+		int vertex_id1 = torus_f[i][0];
+		int vertex_id2 = torus_f[i][1];
+		int vertex_id3 = torus_f[i][2];
+
+		float p1[3] = { torus_v[vertex_id1][0],torus_v[vertex_id1][1],torus_v[vertex_id1][2] };
+		float p2[3] = { torus_v[vertex_id2][0],torus_v[vertex_id2][1],torus_v[vertex_id2][2] };
+		float p3[3] = { torus_v[vertex_id3][0],torus_v[vertex_id3][1],torus_v[vertex_id3][2] };
 
 		//*************calculate the face normal in there************* 
 		//hint: using the cross product   
+		float p12[3] = { p2[0] - p1[0],p2[1] - p1[1],p2[2] - p1[2] };
+		float p13[3] = { p3[0] - p1[0],p3[1] - p1[1],p3[2] - p1[2] };
+
+		float cross[3] = { p12[1] * p13[2] - p12[2] * p13[1],p12[2] * p13[0] - p12[0] * p13[2],p12[0] * p13[1] - p12[1] * p13[0] };
 
 		//calcute the normal value(normal[0]:x,normal[1]:y,normal[2]:z) 
-		normal[0] = 0, normal[1] = 0, normal[2] = 0;
+		normal[0] = cross[0], normal[1] = cross[1], normal[2] = cross[2];
+
+		for (int j = 0; j < 3; j++) {
+			torus_v_n[torus_f[i][j]][0] = cross[0], torus_v_n[torus_f[i][j]][1] = cross[1], torus_v_n[torus_f[i][j]][2] = cross[2];
+			torus_v_n[torus_f[i][j]][3] += 1;
+		}
+		
 		//save the face normal
 		torus_n.push_back(normal);
 	}
 
-	// initialize the size of vertex normal(torus_v_n), the size same as vertex
-	for (int i = 0; i < torus_v.size(); i++)
+	for (int i = 0; i < torus_v_n.size(); i++)
 	{
-		float* new_ver = new float[3];
-		new_ver[0] = (float)0, new_ver[1] = (float)0, new_ver[2] = (float)0;
-		torus_v_n.push_back(new_ver);
+		torus_v_n[i][0] /= torus_v_n[i][3];
+		torus_v_n[i][1] /= torus_v_n[i][3];
+		torus_v_n[i][2] /= torus_v_n[i][3];
 	}
+
+	/************Code update part: End*************/
+
+
+
+
 
 	//*************calculate the vertex normal in there*************
 	//Hint 1: The vertex normal can be calculated using the average of the adjacent face normals
@@ -535,18 +579,20 @@ void draw_my_Torus(double r, double c, int rSeg, int cSeg) {
 	//Hint 3: Also need finding the adjacent faces of vertex which in the same position but has a different Id 
 
 
+	//*************calculate the vertex normal in there*************
+
 	// Drawing Torus
 	for (int i = 0; i < torus_f.size(); i++)
 	{
 		glBegin(GL_QUAD_STRIP);
 		//face normal 
-		glNormal3f(-1 * torus_n[i][0], -1 * torus_n[i][1], -1 * torus_n[i][2]);
+		//glNormal3f(-1 * torus_n[i][0], -1 * torus_n[i][1], -1 * torus_n[i][2]);
 		for (int j = 0; j < 4; j++)
 		{
 			//uv coordinate
 			glTexCoord2d(uv[torus_f[i][j]][0], uv[torus_f[i][j]][1]);
 			//Vertex normal  
-			//glNormal3f(-1 * torus_v_n[torus_f[i][j]][0], -1 * torus_v_n[torus_f[i][j]][1], -1 * torus_v_n[torus_f[i][j]][2]);   
+			glNormal3f(-1 * torus_v_n[torus_f[i][j]][0], -1 * torus_v_n[torus_f[i][j]][1], -1 * torus_v_n[torus_f[i][j]][2]);   
 			glVertex3f(torus_v[torus_f[i][j]][0], torus_v[torus_f[i][j]][1], torus_v[torus_f[i][j]][2]);
 		}
 		glEnd();

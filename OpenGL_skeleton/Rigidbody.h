@@ -27,7 +27,7 @@ public:
 	void setMass(float m);
 	void setE(float e);
 
-	void setRandom(float max = 5);
+	void setRandom(float max = 15);
 
 	float getMass() { return mass; }
 	float getE() { return e; }

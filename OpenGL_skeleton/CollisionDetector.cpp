@@ -67,6 +67,31 @@ void CollisionDetector::run()
 
 }
 
+void CollisionDetector::draw()
+{
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glBegin(GL_TRIANGLES);
+    glNormal3f(0, 1, 0);
+    glTexCoord2f(1.0f, 1.0f);
+    glVertex3f(100, -50, 100);
+    glNormal3f(0, 1, 0);
+    glTexCoord2f(0.0f, 1.0f);
+    glVertex3f(-100, -50, 100);
+    glNormal3f(0, 1, 0);
+    glTexCoord2f(1.0f, 0.0f);
+    glVertex3f(100, -50, -100);
+    glNormal3f(0, 1, 0);
+    glTexCoord2f(0.0f, 0.0f);
+    glVertex3f(-100, -50, -100);
+    glNormal3f(0, 1, 0);
+    glTexCoord2f(0.0f, 1.0f);
+    glVertex3f(-100, -50, 100);
+    glNormal3f(0, 1, 0);
+    glTexCoord2f(1.0f, 0.0f);
+    glVertex3f(100, -50, -100);
+    glEnd();
+}
+
 bool CollisionDetector::isCallide(SphereCollider* a, SphereCollider* b)
 {
     auto apos = a->getpos();
