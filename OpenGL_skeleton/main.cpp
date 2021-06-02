@@ -87,14 +87,14 @@ void Initialize(void)
 void spawnName() {
 
 	bool grav = true;
-	std::vector<float> leftpos = { 50,0,0 };
-	std::vector<float> rightpos = { -50,0,0 };
+	std::vector<float> leftpos = { -50,0,0 };
+	std::vector<float> rightpos = { 50,0,0 };
 
 	std::vector<float> lastpos = { 0,-10,0 };
 	std::vector<float> firstpos = { -1,5,0 };
 	std::vector<float> secondpos = { 18,-3,0 };
-	std::vector<float> firstuppos = { 0,-15,0 };
-	std::vector<float> lastdepos = { -3,3,0 };
+	std::vector<float> firstuppos = { 0,15,0 };
+	std::vector<float> lastdepos = { 3,-3,0 };
 	unique_ptr<OBJObject> a = make_unique<OBJObject>("Contents/OBJ/2-3.obj", "Contents/OBJ/2-3.png");
 	a->getTransform()->setPosition(lastpos);
 	a->getRigidbody()->setUseGravity(grav);

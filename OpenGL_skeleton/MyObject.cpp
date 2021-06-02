@@ -20,7 +20,7 @@ void MyObject::setTexture(std::string file)
 	texture = TextureManager::getInstance()->LoadMeshFromFile(file);
 	//printf("%d\n", texture);
 }
-void MyObject::Draw()
+void MyObject::Draw(bool drawcollider)
 {
 	if (renderer) { 
 		glPushMatrix();
@@ -30,7 +30,9 @@ void MyObject::Draw()
 		glRotatef(transform.rotation[2], 0, 0, 1);
 		glScalef(transform.scale[0], transform.scale[1], transform.scale[2]);
 		renderer->Draw(); 
-		collider->draw();
+		if (drawcollider) {
+			collider->draw();
+		}
 		glPopMatrix();
 	}
 

@@ -30,7 +30,7 @@ void Rigidbody::onCollision(Rigidbody* other)
 {
 	std::vector<float> otoi = {other->getTransform()->position[0] - transform->position[0], other->getTransform()->position[1] - transform->position[1], other->getTransform()->position[2] - transform->position[2]};
 	auto& v2 = other->getOrigV();
-	if (otoi * (v - v2) > 0) {
+	if (otoi * (v - v2) <= 0) {
 		auto& a2 = other->getOrigtA();
 		auto m2 = other->getMass();
 		
@@ -50,7 +50,7 @@ void Rigidbody::onCollisionEnd(Rigidbody* other)
 
 void Rigidbody::onCollision(const std::vector<float>& wall)
 {
-	if (v * wall >= 0) {
+	if (v * wall <= 0) {
 		auto vlen = abs(v);
 		auto wallv = wall * (vlen / abs(wall));
 		auto newv = (v + wallv) * 2 - v;

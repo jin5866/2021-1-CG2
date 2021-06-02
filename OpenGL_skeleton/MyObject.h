@@ -38,7 +38,7 @@ public:
 
 	virtual void setTexture(std::string);
 
-	virtual void Draw();
+	virtual void Draw(bool = false);
 
 	virtual void preTick(float);
 	virtual void tick(float);

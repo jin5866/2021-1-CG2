@@ -9,12 +9,12 @@ std::vector<float> operator- (const std::vector<float>& a, const std::vector<flo
 }
 
 std::vector<float> operator+ (const std::vector<float>& a, const std::vector<float>& b) {
-	return { a[0] - b[0],a[1] - b[1] ,a[2] - b[2] };
+	return { a[0] + b[0],a[1] + b[1] ,a[2] + b[2] };
 }
 
 std::vector<float> operator+(const float* a, const std::vector<float>& b)
 {
-	return { a[0] - b[0],a[1] - b[1] ,a[2] - b[2] };
+	return { a[0] + b[0],a[1] + b[1] ,a[2] + b[2] };
 }
 
 float operator*(const std::vector<float>& a, const std::vector<float>& b)

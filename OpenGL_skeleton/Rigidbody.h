@@ -44,7 +44,7 @@ private:
 
 	Transform* transform;
 
-	const std::vector<float> gravityacc = { 0,9.8,0 };
+	const std::vector<float> gravityacc = { 0,-9.8,0 };
 };
 
 
