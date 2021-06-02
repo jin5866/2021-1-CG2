@@ -1,6 +1,8 @@
 #include "OBJObject.h"
 #include "Renderers.h"
+
 #include "SphereCollider.h"
+//#include "CollisionDetector.h"
 OBJObject::OBJObject(std::string meshFile, std::string textureFile, bool xrotated)
 {
 	auto amesh = new Mesh(meshFile, xrotated);

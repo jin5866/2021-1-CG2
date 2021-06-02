@@ -44,6 +44,7 @@ public:
 	virtual void tick(float);
 
 	virtual void onCollision(MyObject* other);
+	virtual void onCollisionEnd(MyObject* other);
 	void onCollision(const std::vector<float>& wall);
 
 	MyObject() = default;

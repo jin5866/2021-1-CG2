@@ -61,6 +61,16 @@ void MyObject::onCollision(MyObject* other)
 	}
 }
 
+void MyObject::onCollisionEnd(MyObject* other)
+{
+	Rigidbody* o;
+	if (rigidbody) {
+		if (o = other->getRigidbody()) {
+			rigidbody->onCollisionEnd(o);
+		}
+	}
+}
+
 void MyObject::onCollision(const std::vector<float>& wall)
 {
 	if (rigidbody) {

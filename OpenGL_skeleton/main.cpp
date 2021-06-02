@@ -11,6 +11,8 @@
 //#include "TextureManager.h"
 #include <glut.h>
 #include"MyMath.h"
+#include "CollisionDetector.h"
+
 using namespace std;
 
 int						m_Mouse_Coord[2];	// previous mouse coordinates
@@ -208,7 +210,7 @@ void display()
 	//
 	//glPushMatrix();
 	//glBindTexture(GL_TEXTURE_2D, texture2);
-	////glEnable(GL_TEXTURE_2D);
+	//////glEnable(GL_TEXTURE_2D);
 	//glTranslatef(light_pos[0], light_pos[1], light_pos[2]);
 	//draw_my_cube(10);
 	//glPopMatrix();
@@ -567,6 +569,7 @@ void Tick(int value) {
 	for (auto& obj : objs) {
 		obj->preTick(0.001 * tickTime);
 	}
+	CollisionDetector::getInstance()->run();
 	for (auto& obj : objs) {
 		obj->tick(0.001 * tickTime);
 	}

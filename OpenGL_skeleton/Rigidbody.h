@@ -19,6 +19,7 @@ public:
 	void setUseGravity(bool newb);
 
 	void onCollision(Rigidbody* other); // collision with other sphere
+	void onCollisionEnd(Rigidbody* other); // collision with other sphere
 	void onCollision(const std::vector<float>& wall); // collision with wall
 
 	float getMass() { return mass; }
@@ -43,7 +44,7 @@ private:
 
 	Transform* transform;
 
-	const std::vector<float> gravityacc = { 0,9.8f,0 };
+	const std::vector<float> gravityacc = { 0,9.8,0 };
 };
 
 

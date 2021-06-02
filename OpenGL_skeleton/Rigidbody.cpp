@@ -28,21 +28,34 @@ void Rigidbody::setUseGravity(bool newb)
 
 void Rigidbody::onCollision(Rigidbody* other)
 {
-	auto& a2 = other->getOrigtA();
-	auto m2 = other->getMass();
+	std::vector<float> otoi = {other->getTransform()->position[0] - transform->position[0], other->getTransform()->position[1] - transform->position[1], other->getTransform()->position[2] - transform->position[2]};
 	auto& v2 = other->getOrigV();
-	float e2 = other->getE();
+	if (otoi * (v - v2) > 0) {
+		auto& a2 = other->getOrigtA();
+		auto m2 = other->getMass();
+		
+		float e2 = other->getE();
 
-	auto newv = (v2 * (e + 1) * m2 + v * (mass - e * m2)) / (m2 + mass);
-	v = newv;
+		auto newv = (v2 * (e + 1) * m2 + v * (mass - e * m2)) / (m2 + mass);
+		v = newv;
+	}
+
+}
+
+void Rigidbody::onCollisionEnd(Rigidbody* other)
+{
+	origv = v;
+	origa = a;
 }
 
 void Rigidbody::onCollision(const std::vector<float>& wall)
 {
-	auto vlen = abs(v);
-	auto wallv = wall* (vlen / abs(wall));
-	auto newv = (v + wallv) * 2 - v;
-	v = newv;
+	if (v * wall >= 0) {
+		auto vlen = abs(v);
+		auto wallv = wall * (vlen / abs(wall));
+		auto newv = (v + wallv) * 2 - v;
+		v = newv;
+	}
 
 }
 

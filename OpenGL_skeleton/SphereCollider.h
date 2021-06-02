@@ -2,12 +2,15 @@
 #include "Collider.h"
 #include "MyStruct.h"
 #include"MyObject.h"
+
 #include<vector>
+//class CollisionDetector;
+
 class SphereCollider :
     public Collider
 {
 public:
-	SphereCollider(MyObject* object, float size = 0) : object(object), size(size) { transform = object->getTransform(); }
+	SphereCollider(MyObject* object, float size = 1 );
 	//SphereCollider(Transform* transform,float size = 1) :transform(transform),size(size) {};
 	SphereCollider() = default;
 	SphereCollider(const SphereCollider&) = default;
@@ -18,6 +21,7 @@ public:
 	MyObject* getObject() { return object; }
 
 	virtual void onCollision(SphereCollider* other);
+	virtual void onCollisionEnd(SphereCollider* other);
 	void onCollision(const std::vector<float>& wall);
 
 	virtual void draw();

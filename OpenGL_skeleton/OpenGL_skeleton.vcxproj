@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="CollisionDetector.cpp" />
     <ClCompile Include="CubeRenderer.cpp" />
     <ClCompile Include="FileReader.cpp" />
     <ClCompile Include="main.cpp" />
@@ -39,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Collider.h" />
+    <ClInclude Include="CollisionDetector.h" />
     <ClInclude Include="CubeRenderer.h" />
     <ClInclude Include="FileReader.h" />
     <ClInclude Include="Mesh.h" />

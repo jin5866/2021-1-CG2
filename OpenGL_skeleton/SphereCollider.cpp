@@ -1,4 +1,5 @@
 #include "SphereCollider.h"
+#include"CollisionDetector.h"
 #include<glut.h>
 
 
@@ -6,6 +7,12 @@ void SphereCollider::onCollision(SphereCollider* other)
 {
 	object->onCollision(other->getObject());
 }
+
+void SphereCollider::onCollisionEnd(SphereCollider* other)
+{
+	object->onCollisionEnd(other->getObject());
+}
+
 
 void SphereCollider::onCollision(const std::vector<float>& wall)
 {
@@ -29,4 +36,9 @@ float SphereCollider::getSize()
 std::vector<float> SphereCollider::getpos()
 {
 	return std::vector<float>({ transform->position[0], transform->position[1], transform->position[2] });
+}
+
+SphereCollider::SphereCollider(MyObject* object, float size) : object(object), size(size) { 
+	CollisionDetector::getInstance()->addCollider(this);
+	transform = object->getTransform();
 }

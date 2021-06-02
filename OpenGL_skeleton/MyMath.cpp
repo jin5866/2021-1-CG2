@@ -17,6 +17,11 @@ std::vector<float> operator+(const float* a, const std::vector<float>& b)
 	return { a[0] - b[0],a[1] - b[1] ,a[2] - b[2] };
 }
 
+float operator*(const std::vector<float>& a, const std::vector<float>& b)
+{
+	return a[0]*b[0] + a[1]+b[1]+ a[2]*b[2];
+}
+
 std::vector<float> operator* (const std::vector<float>& a, const float& b) {
 	return { a[0] * b,a[1] * b ,a[2] * b };
 }
