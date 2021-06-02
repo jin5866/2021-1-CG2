@@ -22,6 +22,13 @@ public:
 	void onCollisionEnd(Rigidbody* other); // collision with other sphere
 	void onCollision(const std::vector<float>& wall); // collision with wall
 
+	void setV(std::vector<float> v);
+	void setA(std::vector<float> a);
+	void setMass(float m);
+	void setE(float e);
+
+	void setRandom(float max = 5);
+
 	float getMass() { return mass; }
 	float getE() { return e; }
 	const std::vector<float>& getV() { return v; }
@@ -43,6 +50,8 @@ private:
 	std::vector<float> origa = { 0,0,0 };
 
 	Transform* transform;
+
+	std::vector<float> newpos = { 0,0,0 };
 
 	const std::vector<float> gravityacc = { 0,-9.8,0 };
 };

@@ -3,7 +3,7 @@
 
 #include "SphereCollider.h"
 //#include "CollisionDetector.h"
-OBJObject::OBJObject(std::string meshFile, std::string textureFile, bool xrotated)
+OBJObject::OBJObject(std::string meshFile, std::string textureFile, float collidersize, bool xrotated )
 {
 	auto amesh = new Mesh(meshFile, xrotated);
 	mesh.reset(amesh);
@@ -14,7 +14,7 @@ OBJObject::OBJObject(std::string meshFile, std::string textureFile, bool xrotate
 
 	rigidbody.reset(new Rigidbody(&transform));
 
-	collider.reset(new SphereCollider(this, 0.1));
+	collider.reset(new SphereCollider(this, collidersize));
 }
 
 OBJObject::OBJObject()

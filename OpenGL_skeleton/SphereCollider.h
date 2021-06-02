@@ -17,8 +17,11 @@ public:
 	SphereCollider(SphereCollider&&) = default;
 	SphereCollider& operator=(const SphereCollider&) = default;
 	SphereCollider& operator=(SphereCollider&&) = default;
+	~SphereCollider() = default;
 
 	MyObject* getObject() { return object; }
+	Transform* getTransform() { return transform; }
+
 
 	virtual void onCollision(SphereCollider* other);
 	virtual void onCollisionEnd(SphereCollider* other);
@@ -34,6 +37,8 @@ private:
 	MyObject* object;
 	Transform* transform;
 	float size;
+
+	float newpos[3] = { 0,0,0 };
 	
 };
 

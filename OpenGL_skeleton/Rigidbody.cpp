@@ -1,6 +1,6 @@
 #include "Rigidbody.h"
 #include "MyMath.h"
-
+#include<random>
 void Rigidbody::tick(float deltaTime)
 {
 
@@ -38,6 +38,9 @@ void Rigidbody::onCollision(Rigidbody* other)
 
 		auto newv = (v2 * (e + 1) * m2 + v * (mass - e * m2)) / (m2 + mass);
 		v = newv;
+
+		//float otoilen = abs(otoi);
+		
 	}
 
 }
@@ -54,8 +57,38 @@ void Rigidbody::onCollision(const std::vector<float>& wall)
 		auto vlen = abs(v);
 		auto wallv = wall * (vlen / abs(wall));
 		auto newv = (v + wallv) * 2 - v;
-		v = newv;
+		v = newv * e;
 	}
+
+}
+
+void Rigidbody::setV(std::vector<float> v)
+{
+	this->v = v;
+}
+
+void Rigidbody::setA(std::vector<float> a)
+{
+	this->a = a;
+}
+
+void Rigidbody::setMass(float m)
+{
+	mass = m;
+}
+
+void Rigidbody::setE(float e)
+{
+	this->e = e;
+}
+
+void Rigidbody::setRandom(float max)
+{
+	v[0] = static_cast<float>(rand()) / RAND_MAX * (max * 2) - max;
+	v[1] = static_cast<float>(rand()) / RAND_MAX * (max * 2) - max;
+	v[2] = static_cast<float>(rand()) / RAND_MAX * (max * 2) - max;
+	mass = static_cast<float>(rand()) / RAND_MAX * (max - 1) + 1;
+	e = static_cast<float>(rand()) / RAND_MAX * 0.5 + 0.5;
 
 }
 

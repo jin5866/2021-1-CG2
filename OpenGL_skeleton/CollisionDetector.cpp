@@ -20,9 +20,34 @@ void CollisionDetector::run()
    // std::cout << spheres.size() << std::endl;
     for (auto a = spheres.begin(); a != spheres.end(); a++) {
 
-        if (a[0]->getpos()[1] <= -50) {
+        if (a[0]->getpos()[1] - a[0]->getSize() <= -50) {
             //std::cout << "b" << std::endl;
             a[0]->onCollision({ 0,1,0 });
+        }
+
+        if (a[0]->getpos()[1] + a[0]->getSize() >= 50) {
+            //std::cout << "b" << std::endl;
+            a[0]->onCollision({ 0,-1,0 });
+        }
+
+        if (a[0]->getpos()[0] - a[0]->getSize() <= -100) {
+            //std::cout << "b" << std::endl;
+            a[0]->onCollision({ 1,0,0 });
+        }
+
+        if (a[0]->getpos()[0] + a[0]->getSize() >= 100) {
+            //std::cout << "b" << std::endl;
+            a[0]->onCollision({ -1,0,0 });
+        }
+
+        if (a[0]->getpos()[2] - a[0]->getSize() <= -100) {
+            //std::cout << "b" << std::endl;
+            a[0]->onCollision({ 0,0,1 });
+        }
+
+        if (a[0]->getpos()[2] + a[0]->getSize() >= 100) {
+            //std::cout << "b" << std::endl;
+            a[0]->onCollision({ 0,0,-1 });
         }
 
         for (auto b = a + 1; b != spheres.end(); b++) {

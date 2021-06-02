@@ -18,6 +18,17 @@ public:
 		spheres.push_back(s);
 	}
 	
+	void removeCollider(SphereCollider* s) {
+		for (auto st = spheres.begin(); st != spheres.end(); st++) {
+			if (st[0] == s) {
+				spheres.erase(st);
+				return;
+			}
+		}
+	}
+
+	void draw();
+
 private:
 	CollisionDetector() = default;
 	~CollisionDetector() = default;

@@ -34,6 +34,7 @@ void removeAllObj();
 void LightSwitch(int);
 
 bool lighton[8] = {false};
+bool drawcollider = false;
 
 vector<unique_ptr<MyObject>> objs{};
 
@@ -92,24 +93,30 @@ void spawnName() {
 
 	std::vector<float> lastpos = { 0,-10,0 };
 	std::vector<float> firstpos = { -1,5,0 };
-	std::vector<float> secondpos = { 18,-3,0 };
-	std::vector<float> firstuppos = { 0,15,0 };
-	std::vector<float> lastdepos = { 3,-3,0 };
+	std::vector<float> secondpos = { 23,-3,0 };
+	std::vector<float> firstuppos = { 0,20,0 };
+	std::vector<float> lastdepos = { 3,-5,0 };
 	unique_ptr<OBJObject> a = make_unique<OBJObject>("Contents/OBJ/2-3.obj", "Contents/OBJ/2-3.png");
 	a->getTransform()->setPosition(lastpos);
 	a->getRigidbody()->setUseGravity(grav);
-	a->setSize({ 100.0,100.0,100.0 });
+	//a->getRigidbody()->setMass(10);
+	a->getRigidbody()->setRandom();
+	a->setSize({ 100,100,100.0 });
 	objs.push_back(move(a));
 
 	unique_ptr<OBJObject> b = make_unique<OBJObject>("Contents/OBJ/2-1.obj", "Contents/OBJ/2-1.png");
 	b->getTransform()->setPosition(firstpos);
 	b->getRigidbody()->setUseGravity(grav);
-	b->setSize({ 100.0,100.0,100.0 });
+	b->getRigidbody()->setRandom();
+	b->setSize({ 100,100,100 });
 	objs.push_back(move(b));
 
 	unique_ptr<OBJObject> c = make_unique<OBJObject>("Contents/OBJ/2-2.obj", "Contents/OBJ/2-2.png");
 	c->getTransform()->setPosition(secondpos);
 	c->getRigidbody()->setUseGravity(grav);
+	c->getRigidbody()->setRandom();
+	//c->getRigidbody()->setMass(10);
+	//c->getRigidbody()->setV({ 0,20,0 });
 	c->setSize({ 120.0,120.0,120.0 });
 	objs.push_back(move(c));
 
@@ -117,41 +124,48 @@ void spawnName() {
 	unique_ptr<OBJObject> d = make_unique<OBJObject>("Contents/OBJ/1-1.obj", "Contents/OBJ/1-1.png");
 	d->getTransform()->setPosition(firstpos + leftpos);
 	d->getRigidbody()->setUseGravity(grav);
+	d->getRigidbody()->setRandom();
 	d->setSize({ 100.0,100.0,100.0 });
 	objs.push_back(move(d));
 
 	unique_ptr<OBJObject> e = make_unique<OBJObject>("Contents/OBJ/1-2.obj", "Contents/OBJ/1-2.png");
 	e->getTransform()->setPosition(secondpos + leftpos);
 	e->getRigidbody()->setUseGravity(grav);
+	e->getRigidbody()->setRandom();
 	e->setSize({ 120.0,120.0,120.0 });
 	objs.push_back(move(e));
 
-	unique_ptr<OBJObject> f = make_unique<OBJObject>("Contents/OBJ/3-1-1.obj", "Contents/OBJ/3-1-1.png");
+	unique_ptr<OBJObject> f = make_unique<OBJObject>("Contents/OBJ/3-1-1.obj", "Contents/OBJ/3-1-1.png",0.08);
 	f->getTransform()->setPosition(firstpos + rightpos + firstuppos);
 	f->getRigidbody()->setUseGravity(grav);
+	f->getRigidbody()->setRandom();
 	f->setSize({ 100.0,100.0,100.0 });
 	objs.push_back(move(f));
 
-	unique_ptr<OBJObject> g = make_unique<OBJObject>("Contents/OBJ/3-1-2.obj", "Contents/OBJ/3-1-2.png",true);
+	unique_ptr<OBJObject> g = make_unique<OBJObject>("Contents/OBJ/3-1-2.obj", "Contents/OBJ/3-1-2.png",0.15,true);
 	g->getTransform()->setPosition(firstpos + rightpos);
 	g->getRigidbody()->setUseGravity(grav);
+	g->getRigidbody()->setRandom();
 	g->setSize({ 80,80,80 });
 	objs.push_back(move(g));
 
 	unique_ptr<OBJObject>h = make_unique<OBJObject>("Contents/OBJ/3-2.obj", "Contents/OBJ/3-2.png");
 	h->getTransform()->setPosition(secondpos + rightpos + firstuppos);
 	h->getRigidbody()->setUseGravity(grav);
+	h->getRigidbody()->setRandom();
 	h->setSize({ 120.0,120.0,120.0 });
 	objs.push_back(move(h));
 
-	unique_ptr<OBJObject> i = make_unique<OBJObject>("Contents/OBJ/3-3.obj", "Contents/OBJ/3-3.png",true);
+	unique_ptr<OBJObject> i = make_unique<OBJObject>("Contents/OBJ/3-3.obj", "Contents/OBJ/3-3.png",0.1,true);
 	i->getTransform()->setPosition(lastpos + rightpos + lastdepos);
 	i->getRigidbody()->setUseGravity(grav);
+	i->getRigidbody()->setRandom();
 	i->setSize({ 100.0,100.0,100.0 });
 	objs.push_back(move(i));
 }
 
 void removeAllObj() {
+	CollisionDetector::distroy();
 	objs.clear();
 }
 
@@ -233,7 +247,7 @@ void display()
 	//draw_my_cube(10);
 
 	for (auto& obj : objs) {
-		obj->Draw();
+		obj->Draw(drawcollider);
 	}
 
 	
@@ -384,6 +398,9 @@ void Keyboard(unsigned char key, int x, int y)
 		break;
 	case '2': 
 		LightSwitch(1);
+		break;
+	case 'c':
+		drawcollider = !drawcollider;
 		break;
 		// *******************do something here!!*******************
 		// According to the keyboard to control the characters
