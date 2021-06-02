@@ -34,6 +34,7 @@
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Renderers.cpp" />
     <ClCompile Include="Rigidbody.cpp" />
+    <ClCompile Include="SphereCollider.cpp" />
     <ClCompile Include="TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +52,7 @@
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Renderers.h" />
     <ClInclude Include="Rigidbody.h" />
+    <ClInclude Include="SphereCollider.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="TextureManager.h" />
   </ItemGroup>

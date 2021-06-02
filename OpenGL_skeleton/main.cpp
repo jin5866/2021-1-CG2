@@ -84,7 +84,7 @@ void Initialize(void)
 
 void spawnName() {
 
-	bool grav = false;
+	bool grav = true;
 	std::vector<float> leftpos = { 50,0,0 };
 	std::vector<float> rightpos = { -50,0,0 };
 
@@ -565,7 +565,10 @@ void Timer(int value) {
 void Tick(int value) {
 	glutTimerFunc(tickTime, Tick, tickTime);
 	for (auto& obj : objs) {
-		obj->Tick(0.001 * tickTime);
+		obj->preTick(0.001 * tickTime);
+	}
+	for (auto& obj : objs) {
+		obj->tick(0.001 * tickTime);
 	}
 	glutPostRedisplay();
 }

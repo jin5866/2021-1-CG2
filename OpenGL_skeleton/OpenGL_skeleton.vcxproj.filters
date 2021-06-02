@@ -81,6 +81,9 @@
     <ClCompile Include="MyObject.cpp">
       <Filter>Source Files\Object</Filter>
     </ClCompile>
+    <ClCompile Include="SphereCollider.cpp">
+      <Filter>Source Files\Collider</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h">
@@ -130,6 +133,9 @@
     </ClInclude>
     <ClInclude Include="MyObject.h">
       <Filter>Header Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="SphereCollider.h">
+      <Filter>Header Files\Collider</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

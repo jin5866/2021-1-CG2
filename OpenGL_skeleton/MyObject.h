@@ -40,7 +40,11 @@ public:
 
 	virtual void Draw();
 
-	virtual void Tick(float);
+	virtual void preTick(float);
+	virtual void tick(float);
+
+	virtual void onCollision(MyObject* other);
+	void onCollision(const std::vector<float>& wall);
 
 	MyObject() = default;
 	MyObject(const MyObject&) = default;

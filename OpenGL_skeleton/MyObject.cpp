@@ -30,14 +30,42 @@ void MyObject::Draw()
 		glRotatef(transform.rotation[2], 0, 0, 1);
 		glScalef(transform.scale[0], transform.scale[1], transform.scale[2]);
 		renderer->Draw(); 
+		collider->draw();
 		glPopMatrix();
 	}
+
+}
+
+void MyObject::preTick(float deltaTime) {
+	if (rigidbody) {
+		rigidbody->preTick(deltaTime);
+	}
+}
+
+void MyObject::tick(float deltaTime)
+{
+	if (rigidbody) {
+		rigidbody->tick(deltaTime);
+	}
+
 	
 }
 
-void MyObject::Tick(float deltaTime)
+void MyObject::onCollision(MyObject* other)
 {
+	Rigidbody* o;
 	if (rigidbody) {
-		rigidbody->Tick(deltaTime);
+		if (o = other->getRigidbody()) {
+			rigidbody->onCollision(o);
+		}
 	}
 }
+
+void MyObject::onCollision(const std::vector<float>& wall)
+{
+	if (rigidbody) {
+		rigidbody->onCollision(wall);
+	}
+}
+
+
