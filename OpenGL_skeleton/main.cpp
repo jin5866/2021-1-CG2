@@ -196,6 +196,9 @@ void display()
 	if (lighton[2]) {
 		glEnable(GL_LIGHT2);
 	}
+	if (lighton[3]) {
+		glEnable(GL_LIGHT3);
+	}
 
 	GLfloat light_pos[] = { 10, 10, 10, 0 };
 	GLfloat light_amnient[] = {0.1,0.1,0.1,1.0 };
@@ -228,6 +231,20 @@ void display()
 	glLightfv(GL_LIGHT2, GL_AMBIENT, light_amnient2);
 	glLightfv(GL_LIGHT2, GL_DIFFUSE, light_diffuse2);
 	glLightfv(GL_LIGHT2, GL_SPECULAR, light_specular2);
+
+	GLfloat light_pos3[] = { 30, 30, 0, 1 };
+	GLfloat light_amnient3[] = { 0.1,0.1,0.1,1.0 };
+	GLfloat light_diffuse3[] = { 1,1,1,1.0 };
+	GLfloat light_specular3[] = { 1,1,1,1 };
+	GLfloat light_dir[] = { -1,-1,0 };
+
+	glLightfv(GL_LIGHT3, GL_POSITION, light_pos3);
+	glLightfv(GL_LIGHT3, GL_AMBIENT, light_amnient3);
+	glLightfv(GL_LIGHT3, GL_DIFFUSE, light_diffuse3);
+	glLightfv(GL_LIGHT3, GL_SPECULAR, light_specular3);
+	glLightfv(GL_LIGHT3, GL_SPOT_DIRECTION, light_dir);
+	glLightf(GL_LIGHT3, GL_SPOT_CUTOFF, 15);
+	glLightf(GL_LIGHT3, GL_SPOT_EXPONENT, 100);
 	////glutSolidTorus(2, 5, 6, 6);
 	//glBindTexture(GL_TEXTURE_2D, texture1);
 	//glEnable(GL_TEXTURE_2D);
@@ -416,6 +433,9 @@ void Keyboard(unsigned char key, int x, int y)
 		break;
 	case '3':
 		LightSwitch(2);
+		break;
+	case '4':
+		LightSwitch(3);
 		break;
 	case 'c':
 		drawcollider = !drawcollider;
