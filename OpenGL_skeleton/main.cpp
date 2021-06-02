@@ -35,6 +35,7 @@ void LightSwitch(int);
 
 bool lighton[8] = {false};
 bool drawcollider = false;
+bool torus = false;
 
 vector<unique_ptr<MyObject>> objs{};
 
@@ -190,10 +191,11 @@ void display()
 		glEnable(GL_LIGHT0);
 	}
 	if (lighton[1]) {
-		
 		glEnable(GL_LIGHT1);
 	}
-
+	if (lighton[2]) {
+		glEnable(GL_LIGHT2);
+	}
 
 	GLfloat light_pos[] = { 10, 10, 10, 0 };
 	GLfloat light_amnient[] = {0.1,0.1,0.1,1.0 };
@@ -217,6 +219,15 @@ void display()
 	glLightfv(GL_LIGHT1, GL_DIFFUSE, light_diffuse1);
 	glLightfv(GL_LIGHT1, GL_SPECULAR, light_specular1);
 
+	GLfloat light_pos2[] = {0, 0, 0, 1 };
+	GLfloat light_amnient2[] = { 0.1,0.1,0.1,1.0 };
+	GLfloat light_diffuse2[] = { 1,0.3,0.3,1.0 };
+	GLfloat light_specular2[] = { 0.5,0.5,0.5,1 };
+
+	glLightfv(GL_LIGHT2, GL_POSITION, light_pos2);
+	glLightfv(GL_LIGHT2, GL_AMBIENT, light_amnient2);
+	glLightfv(GL_LIGHT2, GL_DIFFUSE, light_diffuse2);
+	glLightfv(GL_LIGHT2, GL_SPECULAR, light_specular2);
 	////glutSolidTorus(2, 5, 6, 6);
 	//glBindTexture(GL_TEXTURE_2D, texture1);
 	//glEnable(GL_TEXTURE_2D);
@@ -251,7 +262,11 @@ void display()
 	}
 
 	CollisionDetector::getInstance()->draw();
-	//draw_my_Torus(5, 10, 10, 10);
+
+	if (torus) {
+		draw_my_Torus(5, 10, 10, 10);
+	}
+	
 
 	//*******************Implemente the lighitng and texturing *******************
 	//*******************Drawing your characters*******************	    
@@ -399,8 +414,14 @@ void Keyboard(unsigned char key, int x, int y)
 	case '2': 
 		LightSwitch(1);
 		break;
+	case '3':
+		LightSwitch(2);
+		break;
 	case 'c':
 		drawcollider = !drawcollider;
+		break;
+	case 'z':
+		torus = !torus;
 		break;
 		// *******************do something here!!*******************
 		// According to the keyboard to control the characters
@@ -549,9 +570,11 @@ void draw_my_Torus(double r, double c, int rSeg, int cSeg)
 		float cross[3] = { p12[1] * p13[2] - p12[2] * p13[1],p12[2] * p13[0] - p12[0] * p13[2],p12[0] * p13[1] - p12[1] * p13[0] };
 
 		//calcute the normal value(normal[0]:x,normal[1]:y,normal[2]:z) 
-		normal[0] = cross[0], normal[1] = cross[1], normal[2] = cross[2];
 
-		for (int j = 0; j < 3; j++) {
+		normal[0] = cross[0], normal[1] = cross[1], normal[2] = cross[2];
+		
+
+		for (int j = 0; j < 4; j++) {
 			torus_v_n[torus_f[i][j]][0] = cross[0], torus_v_n[torus_f[i][j]][1] = cross[1], torus_v_n[torus_f[i][j]][2] = cross[2];
 			torus_v_n[torus_f[i][j]][3] += 1;
 		}
